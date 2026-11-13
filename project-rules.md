@@ -1,42 +1,42 @@
 # Project Rules — Lab 4
 
 ## 1. Stack
-- React 19 + Vite 8, JavaScript (`.jsx`). Không dùng TypeScript.
-- React Router v7: chỉ import từ `'react-router'`, không import `'react-router-dom'`.
-- Test: Vitest + Testing Library (jsdom). Lint: ESLint + `eslint-plugin-react-hooks`.
+- React 19 + Vite 8, JavaScript (`.jsx`). Do not use TypeScript.
+- React Router v7: import only from `'react-router'`, not `'react-router-dom'`.
+- Tests: Vitest + Testing Library (jsdom). Lint: ESLint + `eslint-plugin-react-hooks`.
 
 ## 2. Branch
-- `main`: scaffold + rules. `ex1` tách từ `main`, `ex2` từ `ex1`, `ex3` từ `ex2`.
-- Mỗi branch có ở thư mục gốc: `TASK_DECOMPOSITION.md`, `VERIFICATION.md`, `AI_FAILURE_AUDIT.md`.
+- `main`: scaffold + rules. `ex1` branches from `main`, `ex2` from `ex1`, and `ex3` from `ex2`.
+- Each branch has these files at the repository root: `TASK_DECOMPOSITION.md`, `VERIFICATION.md`, `AI_FAILURE_AUDIT.md`.
 
-## 3. Vòng lặp 4 bước (slide 8)
-1. Contract: ghi interface/route/API vào `TASK_DECOMPOSITION.md`.
-2. Fail test: viết test, chạy, **thấy đỏ**, ghi lại vào `VERIFICATION.md`.
-3. Implement: code tối thiểu để test xanh.
-4. Refactor: dọn code, test vẫn xanh.
+## 3. Four-step loop (slide 8)
+1. Contract: record interfaces/routes/APIs in `TASK_DECOMPOSITION.md`.
+2. Fail test: write and run the test, **observe red**, and record it in `VERIFICATION.md`.
+3. Implement: write the minimum code needed to make the test green.
+4. Refactor: clean up the code while keeping tests green.
 
-## 4. Commit (Conventional Commits)
-- Type hợp lệ: `feat`, `fix`, `test`, `refactor`, `docs`, `chore`, `style`.
-- `feat` = hành vi mới. `fix` = sửa hành vi đã có bị sai.
-- Commit `test:` là commit duy nhất được phép đỏ; commit `feat:` ngay sau phải làm nó xanh.
-- Ghi chú: git log mẫu ở slide 8 sai 3 chỗ — `init:` không phải type hợp lệ (dùng `chore:`),
-  `feat` xuất hiện trước `test`, và `fix:` được dùng cho tính năng mới.
+## 4. Commits (Conventional Commits)
+- Valid types: `feat`, `fix`, `test`, `refactor`, `docs`, `chore`, `style`.
+- `feat` = new behavior. `fix` = correction of existing incorrect behavior.
+- A `test:` commit is the only commit allowed to be red; the immediately following `feat:` commit must make it green.
+- Note: the sample git log on slide 8 has 3 errors — `init:` is not a valid type (use `chore:`),
+  `feat` appears before `test`, and `fix:` is used for a new feature.
 
-## 5. Quy tắc code
-- State suy ra được (lỗi validation, isValid, điểm số) tính trực tiếp trong render. Không dùng `useEffect`.
-- `useEffect` chỉ để đồng bộ với hệ thống bên ngoài (fetch, DOM API); luôn có cleanup và đủ dependency.
-  Không tắt `react-hooks/exhaustive-deps`.
-- `useParams()` luôn trả string → so sánh `String(p.id) === id`.
-- Comment trong JSX dùng `{/* */}`, không dùng `//`.
-- JSX chỉ đặt trong file `.jsx`.
-- Mọi `fetch`: có `AbortController`, kiểm tra `res.ok` trước khi đọc JSON.
-- Accessibility: mỗi field gọi `useId()` riêng; có `aria-invalid`, `aria-describedby`;
-  nút chỉ có icon phải có `aria-label`.
+## 5. Code rules
+- Calculate derived state (validation errors, isValid, scores) directly during render. Do not use `useEffect`.
+- Use `useEffect` only to synchronize with external systems (fetch, DOM APIs); always clean up and list all dependencies.
+  Do not disable `react-hooks/exhaustive-deps`.
+- `useParams()` always returns a string → compare with `String(p.id) === id`.
+- Use `{/* */}` for JSX comments, not `//`.
+- Place JSX only in `.jsx` files.
+- Every `fetch` uses `AbortController` and checks `res.ok` before reading JSON.
+- Accessibility: call `useId()` separately for each field; use `aria-invalid` and `aria-describedby`;
+  icon-only buttons must have an `aria-label`.
 
-## 6. Bảo mật
-- Không hardcode secret. `.env` bị ignore; `.env.example` liệt kê tên biến.
-- Server không spread `req.body`; chỉ lấy các field được phép.
+## 6. Security
+- Do not hardcode secrets. `.env` is ignored; `.env.example` lists variable names.
+- The server must not spread `req.body`; select only allowed fields.
 
-## 7. Definition of Done (mỗi branch)
-- `npm test` xanh, `npm run lint` 0 lỗi, `npm run build` thành công.
-- Đủ 3 file tài liệu. Đã push.
+## 7. Definition of Done (each branch)
+- `npm test` is green, `npm run lint` has 0 errors, and `npm run build` succeeds.
+- All 3 documentation files are present. Changes have been pushed.
