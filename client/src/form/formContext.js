@@ -1,4 +1,4 @@
-// File .js KHÔNG chứa JSX (slide 23 để JSX trong FormContext.js → Vite báo lỗi)
+// This .js file contains NO JSX (slide 23 puts JSX in FormContext.js → Vite reports an error)
 import { createContext, useContext } from 'react'
 
 export const FormContext = createContext(null)

@@ -7,7 +7,7 @@ export default function FormProvider({ initialValues, children }) {
   const [touched, setTouched] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
-  // Derived state: tính đồng bộ ngay trong render, 1 lần render cho mỗi phím gõ
+  // Derived state: calculated synchronously during render, 1 render per keystroke
   const errors = validateForm(values)
   const isValid = Object.keys(errors).length === 0
 
@@ -21,11 +21,11 @@ export default function FormProvider({ initialValues, children }) {
     setTouched((prev) => ({ ...prev, [name]: true }))
   }
 
-  // Chỉ hiện lỗi khi người dùng đã rời field hoặc đã bấm Gửi
+  // Show an error only after the user leaves the field or clicks Submit
   const visibleError = (name) => (touched[name] || submitted ? errors[name] : undefined)
 
   const value = { values, errors, isValid, setSubmitted, handleChange, handleBlur, visibleError }
 
-  // React 19: dùng <FormContext> trực tiếp làm provider (thay cho FormContext.Provider)
+  // React 19: use <FormContext> directly as the provider (instead of FormContext.Provider)
   return <FormContext value={value}>{children}</FormContext>
 }
