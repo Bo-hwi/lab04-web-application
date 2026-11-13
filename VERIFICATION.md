@@ -1,31 +1,31 @@
-# VERIFICATION — ex1
+# VERIFICATION — ex2
 
-## 1. Red → green loop (log from the student's machine)
-| Step | Commit | Command | Result | Time |
+## 1. Red → green loop
+| Step | Commit | Command | Result | Source |
 |---|---|---|---|---|
-| Fail test T1–T3 | `04e5945` | `npm test` | `Tests 3 failed (3)` — navigation "Main" was not found | 15:41 |
-| Implement layout | `734a841` | `npm test`, `npm run lint` | `Tests 3 passed (3)`, lint 0 errors | 15:45 |
-| Fail test T4–T7 | `10d8f59` | `npm test` | `Tests 4 failed \| 3 passed (7)` — `/people` fell through to route `*` (showing "Not Found") | 16:17 |
-| Implement detail | `a31601c` | `npm test` | `Tests 7 passed (7)` | |
-| Refactor lazy | `d03287c` | `npm test`, `npm run lint`, `npm run build` | 7 passed, lint 0 errors, build split out `PersonDetail-5CxAE6Ka.js` | |
+| Fail test V1–V6 | `2e21bd6` | `npm test` | `Tests 4 failed \| 9 passed (13)` — stub `validateForm` returns `{}` | Student machine, 22:24 (reproduced after the fact via `git checkout 2e21bd6 -- src/form/validate.js`) |
+| Implement form context | `a627cca` | `npm test`, `npm run lint` | `Tests 13 passed (13)`, lint 0 errors | Student machine, 20:59 |
+| Fail test T8–T11 | `474e646` | `npm test` | `Tests 4 failed \| 13 passed (17)` — `Unable to find a label with the text of: ...` | Student machine, 22:41 |
+| Implement input field | `cce6818` | `npm test` | `Tests 17 passed (17)` | Student machine, 22:41 |
+| Fail test T12–T13 | `0dbd8cc` | `npm test` | `Tests 1 failed \| 18 passed (19)` — only T13 fails (T12 is a regression guard, green by design) | AI: replayed from the pushed commit `0dbd8cc` |
+| Implement inspector | `0c94379` | `npm test`, `npm run lint`, `npm run build` | `Tests 19 passed (19)`, lint 0 errors, build OK | Student machine, 22:51 |
 
-Independent verification: cloned commit `d03287c` from GitHub and reran `npm test` (7 passed), `eslint .` (0 errors), `vite build` (with a `PersonDetail-*.js` chunk).
+Independent check: AI cloned `0c94379` from GitHub and re-ran `npm test` (19 passed) and `eslint .` (0 errors).
 
-## 2. Verifying the slide defect with a test (mutation)
-- Change `String(p.id) === id` → `p.id === id` (slide 22 code): **T5, T7 fail** (`2 failed | 5 passed`). Revert → 7 passed.
-- Note: this experiment ran in the AI environment; the student should update this line if they rerun it on their own machine.
-- Conclusion: T5/T7 catch the error of comparing a number with the string returned by `useParams()`.
+## 2. Mutation checks (proving tests catch the slide bugs)
+| Mutation | Expected | Result | Source |
+|---|---|---|---|
+| Remove `{...rest}` from `<input>` in `InputField.jsx` (slide 24 code) | T8 fails | `1 failed \| 16 passed (17)` — `toHaveAttribute("autocomplete", "email")` | AI environment; student did not re-run |
+| `validate.js` stub returning `{}` (no validation) | V2–V5 fail | `4 failed \| 9 passed (13)` | Student machine, 22:24 |
 
-## 3. Manual verification (DevTools — slide 12)
+## 3. Manual verification (browser — slide 15)
 | Checkpoint | Result |
 |---|---|
-| Console has no warnings/errors at `/`, `/people/2`, `/people/999`, `/xyz` | ☑ |
-| URL `/people/2` correctly shows Alan Turing; `/people/999` shows 404 | ☑ |
-| Narrowing the window below 640px changes the grid to 1 column | ☑ |
+| `/form`: submit empty form → 4 error messages | X |
+| Valid submit → "Submitted data" appears, no password shown | X |
+| DevTools Console has no warnings/errors | X |
 
-(Student verified on their own machine with Chrome DevTools at 21:18 — console clean. AI additionally checked with a headless browser on the production build.)
+(Student: tick only after checking yourself, and write the time here: __:__)
 
-## 4. Incidents during the work
-- Accidentally pasted `App.jsx` code into `App.test.jsx` → `npm test` reported `No test suite found` → restored with `git restore src/App.test.jsx`.
-- Commit `738497b` accidentally combined `TASK_DECOMPOSITION.md` with a router version change (violating an atomic commit). History was not changed because it had already been pushed; mitigation: run `git status` before each commit.
-- Commit `10d8f59` was created before running `npm test` (the command was run in the repository root by mistake); it was rerun immediately afterward before implementation code existed → the red result in row 3 of the §1 table remains valid.
+## 4. Static check
+- `grep -rn "useEffect" client/src/form` → only a comment in `validate.js`, no hook call.

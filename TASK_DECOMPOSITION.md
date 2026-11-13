@@ -43,16 +43,23 @@ Validation rules: full name ≥ 2 characters; email has a valid format; password
 | T13 | Valid submit → inspector shows name and email; does not expose password |
 
 ## 5. Commit plan (tick after committing)
-- [x] `docs: add ex2 task decomposition and contract`
-- [ ] `test: add failing tests for form validation rules`
-- [ ] `feat: form context`
-- [ ] `test: add failing tests for input field validation`
-- [ ] `feat: input field validation`
-- [ ] `test: add failing tests for inspector output`
-- [ ] `feat: inspector output`
-- [ ] `docs: add ex2 verification and ai failure audit`
+- [x] `docs: add ex2 task decomposition and contract` — `e804c84` (committed after test/feat, see §7)
+- [x] `test: add failing tests for form validation rules` — `2e21bd6` — red 4/13 (reproduced later, see VERIFICATION §1)
+- [x] `feat: form context` — `a627cca` — green 13/13
+- [x] `test: add failing tests for input field validation` — `474e646` — red 4/17
+- [x] `feat: input field validation` — `cce6818` — green 17/17
+- [x] `test: add failing tests for inspector output` — `0dbd8cc` — red 1/19
+- [x] `feat: inspector output` — `0c94379` — green 19/19
+- [x] `docs: add ex2 verification and ai failure audit`
 
 ## 6. Requirements check — Sprint 2 (slide 15)
-- [ ] No `useEffect` in the `form/` directory
-- [ ] `<ShowData />` appears on valid submit
-- [ ] 3 `feat:` commits with the slide's exact names
+- [x] No `useEffect` in the `form/` directory (only mentioned in a comment; `grep` finds no call)
+- [x] `<ShowData />` appears on valid submit (T13)
+- [x] 3 `feat:` commits with the slide's exact names: `feat: form context`, `feat: input field validation`, `feat: inspector output`
+- [ ] Browser check of `/form` with DevTools (VERIFICATION §3) — student ticks after checking
+
+## 7. Deviations from plan
+- The contract commit `e804c84` was created after `2e21bd6` (test) and `a627cca` (feat) because `git add ..` was forgotten. The contract content was written before the code.
+- The "see red" step of `2e21bd6` was skipped at commit time; it was reproduced afterwards by checking out the stub from that commit (VERIFICATION §1).
+- `test:` and `feat:` for input field validation were first committed together (`ffc3aad`, never pushed); split locally with `git reset --soft HEAD~1` into `474e646` + `cce6818` before pushing.
+- `ex1` contains commit `6aad15b add verification`, which does not follow Conventional Commits (project-rules §4). Not rewritten because it was already pushed.

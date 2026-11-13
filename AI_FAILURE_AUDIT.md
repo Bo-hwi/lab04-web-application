@@ -1,26 +1,22 @@
-# AI_FAILURE_AUDIT — ex1
+# AI_FAILURE_AUDIT — ex2
 
-> Part A: defects in sample code from the slides (not claimed to be AI-generated).
-> Part B: failures caused by the AI (Claude) during the assignment — recorded in chat history.
+> Part A: defects in the sample code in the slides (not claimed to be AI-generated).
+> Part B: failures caused by the AI assistants (Claude, Codex) during this sprint — visible in the chat history.
 
 ## A. Sample code in the slides
-| ID | Slide | Defect | Consequence | Correction | Evidence |
+| ID | Slide | Defect | Impact | Fix | Evidence |
 |---|---|---|---|---|---|
-| A-01 | 11, 22 | `people.find(p => p.id === id)` | `useParams()` returns a string → a numeric id never matches → always 404 | `String(p.id) === id` | T5, T7 (VERIFICATION §2) |
-| A-02 | 22 | `// Render layout...` placed inside JSX | The text appears on screen | `{/* */}` | Code review |
-| A-03 | 10 | `Layout` returns 2 sibling elements, `NavLink` lacks `to`, no surrounding Router | Syntax error / broken link | Wrap in `<div>`, add `to`, put `BrowserRouter` in `main.jsx` | T1–T3 |
-| A-04 | 9 | `PersonDetail.tsx` calls `lazy(import('./PersonDetail'))` on itself | Self-referential import; mixes `.tsx`/`.jsx` | Declare `lazy()` in `App.jsx` | Build splits out a separate chunk |
-| A-05 | 9 | `aria-live` placed on the skeleton | Skeleton is removed after loading → screen reader does not read new content | Put `aria-live` on a persistent `<section>` | Code review |
-| A-06 | 22 | `<main>` inside `PeopleLayout` | Nests `<main>` inside the layout's `<main>` | Change to `<section aria-label>` | T5 uses the `region` role |
-| A-07 | 11 | "Responsive" grid has no breakpoint | Horizontal overflow on a phone | `@media (max-width: 640px)` → 1 column | DevTools (VERIFICATION §3) |
+| A-08 | 24 | `InputField` collects `...props` but never spreads them onto `<input>` | `value`, `onChange`, `autoComplete`… never reach the input | Spread `{...rest}` first, then the contract props | T8 + mutation (VERIFICATION §2) |
+| A-09 | 23 | JSX inside `FormContext.js` | Vite cannot parse JSX in a `.js` file | `formContext.js` (no JSX) + `FormProvider.jsx` | Build passes |
+| A-10 | 14 | One `useId()` in the Provider shared by all fields | Duplicate DOM ids, labels bound to the wrong input | `useId()` inside each `InputField` | T8 (unique ids) |
+| A-11 | 23 | Context exposes `setValues` in one snippet and `handleChange` in another; `initial` is undefined | Contract mismatch, `ReferenceError` | Single contract `handleChange`/`handleBlur`; `INITIAL_VALUES` | T9–T11 |
+| A-12 | 23 | `useFormContext` has no guard for a missing Provider | Destructuring `null` crashes with an unclear error | Throw a clear error when context is `null` | Code review |
+| A-13 | 13 | 5 chained `useEffect` hooks for validation | Cascading re-renders, risk of "Maximum update depth exceeded" | Derive `errors` synchronously during render | T11 asserts without `waitFor` |
 
-## B. Failures caused by the AI during the assignment
-| ID | What the AI did | How it was detected | Correction |
-|---|---|---|---|
-| B-01 | Suggested `git add . && git commit` | PowerShell 5.1 reported that `&&` is invalid | Split into separate commands |
-| B-02 | Assumed the repository already existed and advised committing before `git init` | `fatal: not a git repository` | Run `git init -b main` |
-| B-03 | Suggested `Add-Content .gitignore "*.pptx"` | `git show --stat` showed that `.gitignore` still had 3 lines — the new text was appended to `dist/` | Corrected manually, checked with `git check-ignore -v` |
-| B-04 | Suggested `npm install react-router` without specifying a version | `npm ls` showed **v8.5.1**, while the assignment requires v7 | `npm install react-router@7` (commit `738497b`) |
-| B-05 | Proposed 6 branches by exercise number 1.1, 1.2... | Student objected: the slides grade by Sprint | Reorganized into 3 branches ex1/ex2/ex3 |
-| B-06 | Claimed "slide 22 is wrong because `Outlet` cannot pass `people`" | AI rechecked: passing via `element={<PersonDetail people={people} />}` works | Retracted the claim; not counted as a slide defect |
-| B-07 | Wrote tests T4–T7 before `people.js` existed | Tests were red due to `Failed to resolve import` — the wrong reason for red | Put `people.js` in the same test commit |
+## B. Failures caused by the AI assistants
+| ID | Assistant | What happened | Detected by | Fix |
+|---|---|---|---|---|
+| B-08 | Claude | Gave Đợt A as one block (test + implementation together), which made it easy to paste the implementation before running the red test | Student ran `npm test` after pasting the real code → 13 passed, red never observed | Red reproduced from commit `2e21bd6`; later batches state "see red before commit" explicitly |
+| B-09 | Claude | Instructions to fix ex1 DevTools note did not say "delete the old line" clearly; result: two notes, then an extra non-conventional commit `6aad15b add verification` | AI review of the pushed `VERIFICATION.md` | Duplicate removed during translation |
+| B-10 | Codex + editor | Codex and the student edited `TASK_DECOMPOSITION.md` while switching branches with an unsaved tab | VS Code "content of the file is newer" on save | Closed tab without saving, enabled Auto Save, one assistant at a time |
+| B-11 | Claude | First mutation attempt with `sed '/{...rest}/d'` also deleted a comment line, producing an invalid run (13 tests instead of 17) | AI noticed the wrong test count | Re-ran deleting only the exact `{...rest}` line |
