@@ -21,11 +21,11 @@ Independent check: AI cloned `0c94379` from GitHub and re-ran `npm test` (19 pas
 ## 3. Manual verification (browser — slide 15)
 | Checkpoint | Result |
 |---|---|
-| `/form`: submit empty form → 4 error messages | X |
-| Valid submit → "Submitted data" appears, no password shown | X |
-| DevTools Console has no warnings/errors | X |
+| `/form`: submit empty form → 4 error messages | ☑ |
+| Valid submit → "Submitted data" appears, no password shown | ☑ |
+| DevTools Console has no warnings/errors | ☑ |
 
-(Student: tick only after checking yourself, and write the time here: __:__)
+(Student: tick only after checking yourself, and write the time here: 11:2)
 
 ## 4. Static check
 - `grep -rn "useEffect" client/src/form` → only a comment in `validate.js`, no hook call.
