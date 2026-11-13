@@ -14,8 +14,8 @@ export default function PeopleLayout({ people }) {
           </NavLink>
         ))}
       </nav>
-      {/* Slide 22 dùng <main> ở đây → lồng <main> trong <main> của Layout; đổi thành <section> */}
-      {/* aria-live đặt trên vùng luôn tồn tại (không đặt trên skeleton) để screen reader đọc nội dung mới */}
+      {/* Slide 22 uses <main> here → nests <main> inside Layout's <main>; change to <section> */}
+      {/* Put aria-live on a persistent region (not on the skeleton) so the screen reader reads new content */}
       <section className="content-area" aria-label="Person details" aria-live="polite">
         <Outlet />
       </section>

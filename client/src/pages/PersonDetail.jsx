@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 
 export default function PersonDetail({ people }) {
-  // useParams() luôn trả string, kể cả khi URL là /people/1
+  // useParams() always returns a string, even when the URL is /people/1
   const { id } = useParams()
   const person = people.find((p) => String(p.id) === id)
 

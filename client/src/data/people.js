@@ -1,4 +1,4 @@
-// id cố ý là number: useParams() luôn trả string → phải so sánh bằng String(p.id)
+// id is intentionally a number: useParams() always returns a string → compare with String(p.id)
 export const people = [
   { id: 1, name: 'Ada Lovelace', role: 'Analyst' },
   { id: 2, name: 'Alan Turing', role: 'Cryptanalyst' },

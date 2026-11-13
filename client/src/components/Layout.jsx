@@ -18,7 +18,7 @@ export default function Layout() {
           </NavLink>
         </nav>
       </header>
-      {/* Một <main> duy nhất cho cả app; các route con render vào <Outlet /> */}
+      {/* One <main> for the entire app; child routes render into <Outlet /> */}
       <main className="page">
         <Outlet />
       </main>
