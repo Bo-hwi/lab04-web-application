@@ -23,8 +23,6 @@ Kiểm chứng độc lập: clone commit `d03287c` từ GitHub, chạy lại `n
 | URL `/people/2` hiển thị đúng Alan Turing; `/people/999` hiển thị 404 | ☑ |
 | Thu hẹp cửa sổ < 640px → grid chuyển 1 cột | ☑ |
 
-(AI đã kiểm bằng trình duyệt headless trên bản build: console rỗng, 375px → 1 cột. Sinh viên tự kiểm trên máy rồi tick.)
-
 (Sinh viên tự kiểm trên máy bằng Chrome DevTools lúc 21:18 — console sạch. AI kiểm thêm bằng trình duyệt headless trên bản build.)
 
 ## 4. Sự cố trong quá trình làm
