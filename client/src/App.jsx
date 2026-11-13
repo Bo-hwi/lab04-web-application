@@ -1,7 +1,8 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router'
+import { Routes, Route, Navigate } from 'react-router'
 import Layout from './components/Layout.jsx'
 import SimpleForm from './form/SimpleForm.jsx'
+import ForumPage from './forum/ForumPage.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import PeopleLayout from './pages/PeopleLayout.jsx'
 import { Home, About, NotFound, PeopleIndex } from './pages/StaticPages.jsx'
@@ -19,6 +20,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="form" element={<SimpleForm />} />
+        <Route path="forum" element={<Navigate to="/forum/nasa" replace />} />
+        <Route path="forum/:channelId" element={<ForumPage />} />
         <Route path="people" element={<PeopleLayout people={people} />}>
           <Route index element={<PeopleIndex />} />
           <Route

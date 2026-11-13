@@ -128,3 +128,28 @@
 .json-inspector dd {
   margin: 0;
 }
+
+/* ex3: forum */
+.messages {
+  min-height: 120px;
+  margin: 16px 0;
+}
+
+.message-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px 16px;
+}
+
+.message-list dt {
+  font-weight: 700;
+}
+
+.message-list dd {
+  margin: 0;
+}
+
+.simple-form label {
+  display: grid;
+  gap: 4px;
+}
