@@ -56,7 +56,7 @@ Validation rules: full name ≥ 2 characters; email has a valid format; password
 - [x] No `useEffect` in the `form/` directory (only mentioned in a comment; `grep` finds no call)
 - [x] `<ShowData />` appears on valid submit (T13)
 - [x] 3 `feat:` commits with the slide's exact names: `feat: form context`, `feat: input field validation`, `feat: inspector output`
-- [ ] Browser check of `/form` with DevTools (VERIFICATION §3) — student ticks after checking
+- [x] Browser check of `/form` with DevTools (VERIFICATION §3) — student ticks after checking
 
 ## 7. Deviations from plan
 - The contract commit `e804c84` was created after `2e21bd6` (test) and `a627cca` (feat) because `git add ..` was forgotten. The contract content was written before the code.
