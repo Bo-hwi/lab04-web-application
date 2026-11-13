@@ -50,14 +50,19 @@ Channels: `nasa`, `esports-tribunal`, `notNasa`.
 
 ## 5. Commit plan (tick after committing)
 - [x] `docs: add ex3 task decomposition and contract`
-- [ ] `test: add failing tests for express messages api`
-- [ ] `feat: express messages api`
-- [ ] `test: add failing tests for useForumMessages hook`
-- [ ] `feat: useForumMessages hook with abort controller`
-- [ ] `feat: forum page with live channel switcher`
-- [ ] `docs: add ex3 verification and ai failure audit`
+- [x] `test: add failing tests for express messages api` — `23d5000` — red: pass 1 / fail 5
+- [x] `feat: express messages api` — `1c3f4c6` — green: pass 6 / fail 0
+- [x] `test: add failing tests for useForumMessages hook` — `657e827` — red: 5 failed / 19 passed
+- [x] `feat: useForumMessages hook with abort controller` — `d94c310` — green: 24 passed
+- [x] `feat: forum page with live channel switcher` — `9465a36` — 24 passed, lint 0 errors
+- [x] `docs: add ex3 verification and ai failure audit`
 
 ## 6. Requirements check — Sprint 3 (slide 17)
 - [ ] Full-stack fetching works for `nasa`, `esports-tribunal`, `notNasa`
-- [ ] Slow 3G in Chrome DevTools: rapid channel switches show in-flight requests as `(canceled)`
-- [ ] Full-stack error log saved (VERIFICATION)
+- [x] Slow 3G in Chrome DevTools: rapid channel switches show in-flight requests as `(canceled)`
+- [x] Stopping the server and switching channels shows an error instead of crashing
+- [ ] Exact full-stack error log saved (VERIFICATION)
+
+## 7. Deviations from plan
+- `ex2` and `ex3` were rewritten with `git push --force-with-lease`: a wrong `.gitignore` line (`*.pptxClaude outputs/`) caused the server files and the course slide `.pptx` to be committed on `ex2` (AI_FAILURE_AUDIT B-12). The history on GitHub is now clean.
+- `ForumPage` has no dedicated automated test; it is verified manually in the browser (VERIFICATION §3) and indirectly by H1–H5.
