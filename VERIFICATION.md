@@ -1,31 +1,31 @@
 # VERIFICATION — ex1
 
-## 1. Vòng lặp đỏ → xanh (log trên máy sinh viên)
-| Bước | Commit | Lệnh | Kết quả | Giờ |
+## 1. Red → green loop (log from the student's machine)
+| Step | Commit | Command | Result | Time |
 |---|---|---|---|---|
-| Fail test T1–T3 | `04e5945` | `npm test` | `Tests 3 failed (3)` — không tìm thấy navigation "Main" | 15:41 |
-| Implement layout | `734a841` | `npm test`, `npm run lint` | `Tests 3 passed (3)`, lint 0 lỗi | 15:45 |
-| Fail test T4–T7 | `10d8f59` | `npm test` | `Tests 4 failed \| 3 passed (7)` — `/people` rơi vào route `*` (hiện "Not Found") | 16:17 |
+| Fail test T1–T3 | `04e5945` | `npm test` | `Tests 3 failed (3)` — navigation "Main" was not found | 15:41 |
+| Implement layout | `734a841` | `npm test`, `npm run lint` | `Tests 3 passed (3)`, lint 0 errors | 15:45 |
+| Fail test T4–T7 | `10d8f59` | `npm test` | `Tests 4 failed \| 3 passed (7)` — `/people` fell through to route `*` (showing "Not Found") | 16:17 |
 | Implement detail | `a31601c` | `npm test` | `Tests 7 passed (7)` | |
-| Refactor lazy | `d03287c` | `npm test`, `npm run lint`, `npm run build` | 7 passed, lint 0 lỗi, build tách chunk `PersonDetail-5CxAE6Ka.js` | |
+| Refactor lazy | `d03287c` | `npm test`, `npm run lint`, `npm run build` | 7 passed, lint 0 errors, build split out `PersonDetail-5CxAE6Ka.js` | |
 
-Kiểm chứng độc lập: clone commit `d03287c` từ GitHub, chạy lại `npm test` (7 passed), `eslint .` (0 lỗi), `vite build` (có chunk `PersonDetail-*.js`).
+Independent verification: cloned commit `d03287c` from GitHub and reran `npm test` (7 passed), `eslint .` (0 errors), `vite build` (with a `PersonDetail-*.js` chunk).
 
-## 2. Kiểm chứng lỗi slide bằng test (mutation)
-- Đổi `String(p.id) === id` → `p.id === id` (code slide 22): **T5, T7 fail** (`2 failed | 5 passed`). Hoàn tác → 7 passed.
-- Ghi chú: thí nghiệm này chạy trong môi trường AI; sinh viên cập nhật dòng này nếu tự chạy lại trên máy.
-- Kết luận: T5/T7 bắt được lỗi so sánh number với string từ `useParams()`.
+## 2. Verifying the slide defect with a test (mutation)
+- Change `String(p.id) === id` → `p.id === id` (slide 22 code): **T5, T7 fail** (`2 failed | 5 passed`). Revert → 7 passed.
+- Note: this experiment ran in the AI environment; the student should update this line if they rerun it on their own machine.
+- Conclusion: T5/T7 catch the error of comparing a number with the string returned by `useParams()`.
 
-## 3. Kiểm chứng thủ công (DevTools — slide 12)
-| Checkpoint | Kết quả |
+## 3. Manual verification (DevTools — slide 12)
+| Checkpoint | Result |
 |---|---|
-| Console không có warning/error tại `/`, `/people/2`, `/people/999`, `/xyz` | ☑ |
-| URL `/people/2` hiển thị đúng Alan Turing; `/people/999` hiển thị 404 | ☑ |
-| Thu hẹp cửa sổ < 640px → grid chuyển 1 cột | ☑ |
+| Console has no warnings/errors at `/`, `/people/2`, `/people/999`, `/xyz` | ☑ |
+| URL `/people/2` correctly shows Alan Turing; `/people/999` shows 404 | ☑ |
+| Narrowing the window below 640px changes the grid to 1 column | ☑ |
 
-(AI đã kiểm bằng trình duyệt headless trên bản build: console rỗng, 375px → 1 cột. Sinh viên tự kiểm trên máy rồi tick.)
+(Student verified on their own machine with Chrome DevTools at 21:18 — console clean. AI additionally checked with a headless browser on the production build.)
 
-## 4. Sự cố trong quá trình làm
-- Dán nhầm code `App.jsx` vào `App.test.jsx` → `npm test` báo `No test suite found` → khôi phục bằng `git restore src/App.test.jsx`.
-- Commit `738497b` gộp nhầm `TASK_DECOMPOSITION.md` với thay đổi phiên bản router (vi phạm atomic commit). Không sửa lịch sử vì đã push; biện pháp: chạy `git status` trước mỗi commit.
-- Commit `10d8f59` được tạo trước khi chạy `npm test` (chạy nhầm ở thư mục gốc); đã chạy lại ngay sau đó khi chưa có code triển khai → kết quả đỏ ở dòng 3 bảng §1 vẫn hợp lệ.
+## 4. Incidents during the work
+- Accidentally pasted `App.jsx` code into `App.test.jsx` → `npm test` reported `No test suite found` → restored with `git restore src/App.test.jsx`.
+- Commit `738497b` accidentally combined `TASK_DECOMPOSITION.md` with a router version change (violating an atomic commit). History was not changed because it had already been pushed; mitigation: run `git status` before each commit.
+- Commit `10d8f59` was created before running `npm test` (the command was run in the repository root by mistake); it was rerun immediately afterward before implementation code existed → the red result in row 3 of the §1 table remains valid.

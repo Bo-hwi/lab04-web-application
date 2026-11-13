@@ -7,8 +7,8 @@ import { Home, About, NotFound, PeopleIndex } from './pages/StaticPages.jsx'
 import { people } from './data/people.js'
 import './App.css'
 
-// Ex 1.1: lazy() khai báo ở file dùng nó (App.jsx), không phải trong chính PersonDetail
-// React.lazy yêu cầu PersonDetail.jsx có export default
+// Ex 1.1: declare lazy() in the file that uses it (App.jsx), not in PersonDetail itself
+// React.lazy requires PersonDetail.jsx to have a default export
 const PersonDetail = lazy(() => import('./pages/PersonDetail.jsx'))
 
 export default function App() {
