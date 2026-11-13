@@ -25,6 +25,8 @@ Kiểm chứng độc lập: clone commit `d03287c` từ GitHub, chạy lại `n
 
 (AI đã kiểm bằng trình duyệt headless trên bản build: console rỗng, 375px → 1 cột. Sinh viên tự kiểm trên máy rồi tick.)
 
+(Sinh viên tự kiểm trên máy bằng Chrome DevTools lúc 21:18 — console sạch. AI kiểm thêm bằng trình duyệt headless trên bản build.)
+
 ## 4. Sự cố trong quá trình làm
 - Dán nhầm code `App.jsx` vào `App.test.jsx` → `npm test` báo `No test suite found` → khôi phục bằng `git restore src/App.test.jsx`.
 - Commit `738497b` gộp nhầm `TASK_DECOMPOSITION.md` với thay đổi phiên bản router (vi phạm atomic commit). Không sửa lịch sử vì đã push; biện pháp: chạy `git status` trước mỗi commit.
