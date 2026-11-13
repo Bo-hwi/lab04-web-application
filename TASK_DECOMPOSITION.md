@@ -58,10 +58,10 @@ Channels: `nasa`, `esports-tribunal`, `notNasa`.
 - [x] `docs: add ex3 verification and ai failure audit`
 
 ## 6. Requirements check — Sprint 3 (slide 17)
-- [ ] Full-stack fetching works for `nasa`, `esports-tribunal`, `notNasa`
+- [X] Full-stack fetching works for `nasa`, `esports-tribunal`, `notNasa`
 - [x] Slow 3G in Chrome DevTools: rapid channel switches show in-flight requests as `(canceled)`
 - [x] Stopping the server and switching channels shows an error instead of crashing
-- [ ] Exact full-stack error log saved (VERIFICATION)
+- [X] Exact full-stack error log saved (VERIFICATION)
 
 ## 7. Deviations from plan
 - `ex2` and `ex3` were rewritten with `git push --force-with-lease`: a wrong `.gitignore` line (`*.pptxClaude outputs/`) caused the server files and the course slide `.pptx` to be committed on `ex2` (AI_FAILURE_AUDIT B-12). The history on GitHub is now clean.
