@@ -66,7 +66,7 @@
   margin: 0;
 }
 
-/* Slide 11 gọi là "responsive" nhưng thiếu breakpoint → màn hẹp chuyển 1 cột */
+/* Slide 11 calls it "responsive" but has no breakpoint → collapse to 1 column on narrow screens */
 @media (max-width: 640px) {
   .people-frame {
     grid-template-columns: 1fr;
@@ -92,4 +92,39 @@
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+/* ex2: form engine */
+.simple-form {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.field-group {
+  display: grid;
+  gap: 4px;
+}
+
+.field-group input {
+  padding: 8px;
+  font: inherit;
+}
+
+.field-group input[aria-invalid='true'] {
+  border: 2px solid #b00020;
+}
+
+.field-error {
+  margin: 0;
+  color: #b00020;
+}
+
+.json-inspector .data-row {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 16px;
+}
+
+.json-inspector dd {
+  margin: 0;
 }

@@ -16,6 +16,9 @@ export default function Layout() {
           <NavLink to="/about" className={linkClass}>
             About
           </NavLink>
+          <NavLink to="/form" className={linkClass}>
+            Form
+          </NavLink>
         </nav>
       </header>
       {/* One <main> for the entire app; child routes render into <Outlet /> */}
