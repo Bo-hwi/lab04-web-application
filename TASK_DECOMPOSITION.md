@@ -59,14 +59,15 @@
 T1–T3 thuộc "router layout"; T4–T7 thuộc "detail route handling".
 Ex 1.1 là refactor: T1–T7 phải giữ xanh và `npm run build` phải tách chunk riêng cho `PersonDetail`.
 
-## 5. Kế hoạch commit
-1. `docs: add ex1 task decomposition and contract`
-2. `test: add failing tests for router layout` (T1–T3) — đỏ
-3. `feat: router layout` — xanh
-4. `test: add failing tests for detail route handling` (T4–T7) — đỏ
-5. `feat: detail route handling` — xanh
-6. `refactor: lazy load person detail route with suspense skeleton` — vẫn xanh
-7. `docs: add ex1 verification and ai failure audit`
+## 5. Kế hoạch commit (tick khi đã commit)
+- [x] `docs: add ex1 task decomposition and contract` — thực tế gộp vào `738497b` (xem §8)
+- [x] `fix: pin react-router to v7 as required by lab spec` — `738497b` (ngoài kế hoạch)
+- [x] `test: add failing tests for router layout` — `04e5945` — đỏ 3/3
+- [x] `feat: router layout` — `734a841` — xanh 3/3
+- [x] `test: add failing tests for detail route handling` — `10d8f59` — đỏ 4/7
+- [x] `feat: detail route handling` — `a31601c` — xanh 7/7
+- [x] `refactor: lazy load person detail route with suspense skeleton` — `d03287c` — xanh 7/7
+- [x] `docs: add ex1 verification and ai failure audit`
 
 ## 6. WBS & timebox (Sprint 1 = 35 phút)
 | Việc | Phút |
@@ -76,3 +77,13 @@ Ex 1.1 là refactor: T1–T7 phải giữ xanh và `npm run build` phải tách 
 | T4–T7 + PeopleLayout / PersonDetail + CSS Grid | 12 |
 | Lazy + Skeleton | 5 |
 | Verification + audit | 5 |
+
+## 7. Requirements check — Sprint 1 (slide 12)
+- [x] `PeopleLayout.jsx` dùng `<Outlet />`, `PersonDetail.jsx` dùng `useParams()` (T4–T7 xanh)
+- [x] Có 2 commit `feat:` đúng tên slide: `feat: router layout`, `feat: detail route handling`
+- [x] DevTools: Console không warning, URL param parse đúng (VERIFICATION §3) — sinh viên tự tick sau khi kiểm
+- [x] Ex 1.1: `npm run build` tách chunk `PersonDetail-*.js`
+
+## 8. Sai lệch so với kế hoạch
+- `main` vẫn khai báo `react-router@^8` (AI_FAILURE_AUDIT B-04); sửa về v7 ở `ex1`. `ex2`, `ex3` tách từ `ex1` nên kế thừa v7.
+- Commit `738497b` gộp nhầm file docs với thay đổi phiên bản router (VERIFICATION §4). Không sửa lịch sử vì đã push.
