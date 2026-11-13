@@ -28,10 +28,11 @@ AI end-to-end check (headless browser, server + Vite dev proxy): `/forum` redire
 | `/forum` redirects to `/forum/nasa` and shows "Welcome to #nasa" | ☑ |
 | Posting `An / hello` makes the message appear in the list | ☑ (student report) |
 | Slow 3G: rapid channel switches show in-flight requests as `(canceled)` | ☑ — two canceled requests at 925 ms and 844 ms; final request returned 304 (student report) |
-| Server stopped → switching channels shows an error message instead of crashing | ☑ (student report; exact text pending) |
+| Server stopped → switching channels shows an error message instead of crashing | ☑ (student report; exact text below) |
+| GET through Vite proxy for `nasa`, `esports-tribunal`, `notNasa` | ☑ — HTTP 200 for all three; message counts 1, 0, 0 (Codex CLI check on 2026-11-14; not a browser check) |
 
 Error log (paste the exact message shown when the server is stopped):
 ```
-Exact error text not provided yet.
+Could not load messages: HTTP 502
 ```
 (Checked by the student in Chrome DevTools at 12:25.)
