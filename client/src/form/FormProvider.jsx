@@ -2,13 +2,17 @@ import { useState } from 'react'
 import { FormContext } from './formContext.js'
 import { validateForm } from './validate.js'
 
-export default function FormProvider({ initialValues, children }) {
+export default function FormProvider({
+  initialValues,
+  validate = validateForm,
+  children,
+}) {
   const [values, setValues] = useState(initialValues)
   const [touched, setTouched] = useState({})
   const [submitted, setSubmitted] = useState(false)
 
   // Derived state: calculated synchronously during render, 1 render per keystroke
-  const errors = validateForm(values)
+  const errors = validate(values)
   const isValid = Object.keys(errors).length === 0
 
   const handleChange = (e) => {

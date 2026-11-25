@@ -1,3 +1,4 @@
+import AppealForm from '../form/AppealForm.jsx'
 import { useParams } from 'react-router'
 
 const playerNames = {
@@ -22,6 +23,7 @@ export default function PlayerDossier() {
     <main className="page">
       <h1>{playerName} Dossier</h1>
       <p>Esports fair-play appeal case dossier.</p>
+      <AppealForm playerName={playerName} />
     </main>
   )
 }

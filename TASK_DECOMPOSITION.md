@@ -76,7 +76,7 @@ Build a full-stack appeal tribunal for the Himass and TanVuu case study.
 
 ## Task Status
 - [ ] HW2-T1: Build player dossier routes for Himass and TanVuu.
-- [ ] HW2-T2: Build the context-driven appeal form with synchronous validation.
+- [x] HW2-T2: Build the context-driven appeal form with synchronous validation.
 - [ ] HW2-T3: Implement and verify the zero-drift SLA countdown hook.
 - [ ] HW2-T4: Complete the post-mortem audit and final verification.
 
@@ -91,7 +91,7 @@ Status: TODO
 - [ ] Cover route behavior with automated tests.
 
 ### HW2-T2: Appeal Form
-Status: TODO
+Status: DONE
 
 - [ ] Manage form values and errors through React Context.
 - [ ] Derive validation errors during render without a validation useEffect chain.
