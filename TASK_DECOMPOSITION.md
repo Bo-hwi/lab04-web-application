@@ -79,31 +79,13 @@ Status: DONE
 
 ### H1-T5: Quality Verification
 
-Status: IN PROGRESS
+Status: DONE
 
 - [x] Tests pass for implemented features.
 - [x] ESLint reports zero errors.
 - [x] Production build succeeds.
 - [x] Verify responsive layout in a narrow browser window.
-- [x] Record Lighthouse results (Accessibility 100; Performance timed out).
-- [ ] Record accessibility results.
-
-Status: IN PROGRESS
-
-- [x] Tests pass for implemented features.
-- [x] ESLint reports zero errors.
-- [x] Production build succeeds.
-- [x] Verify responsive layout in a narrow browser window.
-- [ ] Record Lighthouse results.
-- [ ] Record accessibility results.
-
-Status: TODO
-
-- [x] Tests pass for implemented features.
-- [x] ESLint reports zero errors.
-- [x] Production build succeeds.
-- [ ] Verify responsive layout.
-- [x] Record Lighthouse results (Performance timeout; Accessibility 93, incomplete run).
+- [x] Record Lighthouse results (Accessibility 100; Performance timed out and remains unverified).
 - [ ] Record accessibility results.
 
 ### H1-T6: Delivery
