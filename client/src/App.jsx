@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx'
 import SimpleForm from './form/SimpleForm.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import PeopleLayout from './pages/PeopleLayout.jsx'
+import PlayerDossier from './pages/PlayerDossier.jsx'
 import { Home, About, NotFound, PeopleIndex } from './pages/StaticPages.jsx'
 import { people } from './data/people.js'
 import './App.css'
@@ -19,6 +20,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="form" element={<SimpleForm />} />
+        <Route path="dossier/:playerID" element={<PlayerDossier />} />
         <Route path="people" element={<PeopleLayout people={people} />}>
           <Route index element={<PeopleIndex />} />
           <Route
