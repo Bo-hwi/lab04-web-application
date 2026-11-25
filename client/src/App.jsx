@@ -1,121 +1,136 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import { useEffect, useRef } from 'react'
+import { useSearchParams } from 'react-router'
+import { photos } from './photos'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const dialogRef = useRef(null)
+
+  const selectedCategory = searchParams.get('category')
+  const selectedPhotoId = searchParams.get('photoId')
+
+  const filteredPhotos = selectedCategory
+    ? photos.filter((photo) => photo.category === selectedCategory)
+    : photos
+
+  const selectedPhoto =
+    photos.find((photo) => photo.id === selectedPhotoId) ?? null
+
+  function updateParams(key, value) {
+    const nextParams = new URLSearchParams(searchParams)
+
+    if (value === null) {
+      nextParams.delete(key)
+    } else {
+      nextParams.set(key, value)
+    }
+
+    setSearchParams(nextParams)
+  }
+
+  function handleCategoryChange(category) {
+    updateParams('category', category === 'all' ? null : category)
+  }
+
+  function handleOpenPhoto(photoId) {
+    updateParams('photoId', photoId)
+  }
+
+  function handleClosePhoto() {
+    updateParams('photoId', null)
+  }
+
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (selectedPhoto) {
+      if (!dialog.open) dialog.showModal()
+    } else if (dialog.open) {
+      dialog.close()
+    }
+  }, [selectedPhoto])
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <main>
+      <h1>Photo Gallery</h1>
+
+      <nav aria-label="Photo categories">
         <button
           type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={() => handleCategoryChange('all')}
+          aria-pressed={!selectedCategory}
         >
-          Count is {count}
+          All
         </button>
+
+        <button
+          type="button"
+          onClick={() => handleCategoryChange('nature')}
+          aria-pressed={selectedCategory === 'nature'}
+        >
+          Nature
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleCategoryChange('architecture')}
+          aria-pressed={selectedCategory === 'architecture'}
+        >
+          Architecture
+        </button>
+      </nav>
+
+      <section aria-label="Photo collection">
+        {filteredPhotos.map((photo) => (
+          <article key={photo.id}>
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              width="300"
+              height="200"
+            />
+
+            <h2>{photo.title}</h2>
+
+            <button
+              type="button"
+              onClick={() => handleOpenPhoto(photo.id)}
+            >
+              View {photo.title}
+            </button>
+          </article>
+        ))}
       </section>
 
-      <div className="ticks"></div>
+      <dialog
+        ref={dialogRef}
+        aria-label={selectedPhoto?.title ?? 'Photo details'}
+        onClose={handleClosePhoto}
+        onCancel={(event) => {
+          event.preventDefault()
+          handleClosePhoto()
+        }}
+      >
+        {selectedPhoto && (
+          <>
+            <h2>{selectedPhoto.title}</h2>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <img
+              src={selectedPhoto.src}
+              alt={selectedPhoto.alt}
+              width="600"
+              height="400"
+            />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+            <button type="button" onClick={handleClosePhoto}>
+              Close
+            </button>
+          </>
+        )}
+      </dialog>
+    </main>
   )
 }
 
