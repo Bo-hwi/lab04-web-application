@@ -63,3 +63,53 @@ Validation rules: full name ≥ 2 characters; email has a valid format; password
 - The "see red" step of `2e21bd6` was skipped at commit time; it was reproduced afterwards by checking out the stub from that commit (VERIFICATION §1).
 - `test:` and `feat:` for input field validation were first committed together (`ffc3aad`, never pushed); split locally with `git reset --soft HEAD~1` into `474e646` + `cce6818` before pushing.
 - `ex1` contains commit `6aad15b add verification`, which does not follow Conventional Commits (project-rules §4). Not rewritten because it was already pushed.
+# Homework 2: Full-Stack Esports Fair-Play Appeal Tribunal
+
+## Goal
+Build a full-stack appeal tribunal for the Himass and TanVuu case study.
+
+## Contract
+- Dossier route: `/dossier/:playerID`
+- Appeal form: React Context with synchronous validation derived during render.
+- SLA hook: `useAppealSlaTimer()` calculates remaining time against an absolute system-clock deadline.
+- AI failure analysis: document architecture decisions and observed AI failures in `AI_FAILURE_AUDIT.md`.
+
+## Task Status
+- [ ] HW2-T1: Build player dossier routes for Himass and TanVuu.
+- [ ] HW2-T2: Build the context-driven appeal form with synchronous validation.
+- [ ] HW2-T3: Implement and verify the zero-drift SLA countdown hook.
+- [ ] HW2-T4: Complete the post-mortem audit and final verification.
+
+## Acceptance Criteria
+
+### HW2-T1: Player Dossiers
+Status: TODO
+
+- [ ] Support `/dossier/himass` and `/dossier/tanvuu`.
+- [ ] Show the matching player's case information at each route.
+- [ ] Handle an unknown player ID with a clear not-found state.
+- [ ] Cover route behavior with automated tests.
+
+### HW2-T2: Appeal Form
+Status: TODO
+
+- [ ] Manage form values and errors through React Context.
+- [ ] Derive validation errors during render without a validation useEffect chain.
+- [ ] Connect labels, field errors, and inputs accessibly.
+- [ ] Cover valid, invalid, and cross-field cases with automated tests.
+
+### HW2-T3: SLA Countdown
+Status: TODO
+
+- [ ] Implement `useAppealSlaTimer()`.
+- [ ] Calculate remaining time from an absolute deadline and current system time.
+- [ ] Resynchronize when the page becomes visible again.
+- [ ] Test countdown updates and visibility resynchronization.
+
+### HW2-T4: Audit and Delivery
+Status: TODO
+
+- [ ] Record observed AI failures and fixes in `AI_FAILURE_AUDIT.md`.
+- [ ] Run tests, lint, and production build.
+- [ ] Record browser verification in `VERIFICATION.md`.
+- [ ] Commit each completed task separately and push the branch.
