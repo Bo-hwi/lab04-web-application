@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router'
 import { photos } from './photos'
@@ -38,6 +37,7 @@ function App() {
   }
 
   function handleClosePhoto() {
+    if (!selectedPhotoId) return
     updateParams('photoId', null)
   }
 
@@ -85,15 +85,8 @@ function App() {
       <section aria-label="Photo collection">
         {filteredPhotos.map((photo) => (
           <article key={photo.id}>
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              width="300"
-              height="200"
-            />
-
+            <img src={photo.src} alt={photo.alt} width="300" height="200" />
             <h2>{photo.title}</h2>
-
             <button
               type="button"
               onClick={() => handleOpenPhoto(photo.id)}
@@ -116,14 +109,12 @@ function App() {
         {selectedPhoto && (
           <>
             <h2>{selectedPhoto.title}</h2>
-
             <img
               src={selectedPhoto.src}
               alt={selectedPhoto.alt}
               width="600"
               height="400"
             />
-
             <button type="button" onClick={handleClosePhoto}>
               Close
             </button>

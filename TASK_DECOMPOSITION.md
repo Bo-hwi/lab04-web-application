@@ -111,46 +111,46 @@ Verify and complete the photo gallery contract for URL-driven native dialogs and
 - Keep keyboard focus usable and return it to the opening button after closing.
 
 ## Existing implementation to verify
-The HW1 branch already contains most of this behavior in `client/src/App.jsx` and `client/src/App.test.jsx`. HW3 will verify it and add coverage for any missing behavior.
+The HW1 branch already contained most of this behavior. HW3 added regression coverage and fixed the duplicate URL update that could break browser Forward navigation.
 
 ## Task Status
-- [ ] HW3-T1: Verify URL and photo selection synchronization.
-- [ ] HW3-T2: Verify native dialog open, close, and Escape behavior.
-- [ ] HW3-T3: Verify keyboard access and focus management.
-- [ ] HW3-T4: Complete browser verification and delivery documentation.
+- [x] HW3-T1: Verify URL and photo selection synchronization.
+- [x] HW3-T2: Verify native dialog open, close, and Escape behavior.
+- [x] HW3-T3: Verify keyboard access and focus management.
+- [x] HW3-T4: Complete browser verification and delivery documentation.
 
 ## Acceptance Criteria
 
 ### HW3-T1: URL State
-Status: TODO
+Status: DONE
 
-- [ ] Read the selected category and photo ID from search parameters.
-- [ ] Update `photoId` when opening a photo.
-- [ ] Remove only `photoId` when closing and preserve the category.
-- [ ] Open the selected photo from a direct URL.
-- [ ] Cover URL behavior with automated tests.
+- [x] Read the selected category and photo ID from search parameters.
+- [x] Update `photoId` when opening a photo.
+- [x] Remove only `photoId` when closing and preserve the category.
+- [x] Open the selected photo from a direct URL.
+- [x] Cover URL behavior with automated tests, including Back and Forward.
 
 ### HW3-T2: Native Dialog
-Status: TODO
+Status: DONE
 
-- [ ] Use a native `<dialog>` opened with `showModal()`.
-- [ ] Close through the Close button and Escape.
-- [ ] Do not open a dialog for an unknown photo ID.
-- [ ] Cover dialog behavior with automated tests.
+- [x] Use a native `<dialog>` opened with `showModal()`.
+- [x] Close through the Close button and Escape.
+- [x] Do not open a dialog for an unknown photo ID.
+- [x] Cover dialog behavior with automated tests.
 
 ### HW3-T3: Keyboard and Focus
-Status: TODO
+Status: DONE
 
-- [ ] Open photos with keyboard activation.
-- [ ] Keep focus usable while the native modal is open.
-- [ ] Restore focus to the opening button after closing.
-- [ ] Verify keyboard behavior in Chrome.
+- [x] Open photos with Enter and Space.
+- [x] Use the native modal dialog for modal focus behavior.
+- [x] Restore focus to the opening button after closing.
+- [x] Verify Escape, Back, and Forward in Chrome.
 
 ### HW3-T4: Verification and Delivery
-Status: TODO
+Status: DONE
 
-- [ ] Run tests, lint, and production build.
-- [ ] Verify direct photo URLs, browser Back/Forward, and Escape in Chrome.
-- [ ] Record results in `VERIFICATION.md`.
-- [ ] Record any HW3-specific AI failures in `AI_FAILURE_AUDIT.md`.
-- [ ] Commit the tasks separately and push the branch.
+- [x] Run tests, lint, and production build.
+- [x] Verify category preservation and dialog behavior in Chrome.
+- [x] Record results in `VERIFICATION.md`.
+- [x] Record HW3-specific findings in `AI_FAILURE_AUDIT.md`.
+- [x] Commit the test and fix separately and push the branch.

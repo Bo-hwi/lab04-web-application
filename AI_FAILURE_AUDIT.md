@@ -131,3 +131,14 @@ Status: RESOLVED
 ### Prevention
 - Keep jsdom mocks limited to browser APIs the environment does not implement.
 - Verify native dialog focus behavior in a real browser.
+
+# Homework 3: AI Failure Audit
+
+## Observed failures and fixes
+
+- The first regression test used `fireEvent.cancel`, which is not available in this project's Testing Library version. It was replaced with a generic cancel event.
+- Browser Back closed the dialog, but the dialog's `onClose` handler also updated the URL and could disrupt Forward navigation. `handleClosePhoto` now does nothing when there is no selected photo ID.
+
+## Architecture decision
+
+- The URL remains the source of truth for the selected photo. The native dialog follows that state, while the close handler avoids creating an extra URL update during browser history navigation.

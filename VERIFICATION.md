@@ -243,3 +243,30 @@ Status: IN PROGRESS
 ### Remaining
 - Performance: NOT VERIFIED because Lighthouse timed out.
 - Complete a manual accessibility audit.
+
+# Homework 3 Verification
+
+- Full client tests: 17 passed across 2 test files.
+- `npm run lint`: passed with no warnings or errors.
+- `npm run build`: passed.
+- Browser: opening a photo adds `photoId` while preserving `category`.
+- Browser Back closes the dialog; Forward reopens it.
+- Escape closes the dialog, preserves the category, and restores focus.
+
+# Homework 3 Verification
+
+Date: 2026-11-26
+
+## Automated checks
+
+- `npm test`: 2 test files passed, 17 tests passed.
+- `npm run lint`: passed with no warnings or errors.
+- `npm run build`: passed; Vite transformed 22 modules.
+
+## Browser checks
+
+- `/gallery?category=nature` displayed the Nature photos.
+- Opening Mountain Landscape added `photoId=photo-001` and preserved `category=nature`.
+- Browser Back closed the dialog and preserved the category.
+- Browser Forward reopened the dialog.
+- Escape closed the dialog and preserved the category.
