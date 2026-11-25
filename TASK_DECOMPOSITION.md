@@ -96,3 +96,61 @@ Status: IN PROGRESS
 - [ ] Finalize VERIFICATION.md.
 - [ ] Finalize AI_FAILURE_AUDIT.md.
 - [ ] Commit and push changes.
+
+# Homework 3: URL-Synced Accessible Photo Dialog
+
+## Goal
+Verify and complete the photo gallery contract for URL-driven native dialogs and accessible focus management.
+
+## Contract
+- Keep `category` and `photoId` synchronized through React Router `useSearchParams`.
+- Derive the selected photo and dialog state from `photoId`.
+- Use a native HTML `<dialog>` with a ref and `showModal()` / `close()`.
+- Closing with the Close button, Escape, or browser navigation must synchronize the URL.
+- Preserve the category parameter when opening and closing a photo.
+- Keep keyboard focus usable and return it to the opening button after closing.
+
+## Existing implementation to verify
+The HW1 branch already contains most of this behavior in `client/src/App.jsx` and `client/src/App.test.jsx`. HW3 will verify it and add coverage for any missing behavior.
+
+## Task Status
+- [ ] HW3-T1: Verify URL and photo selection synchronization.
+- [ ] HW3-T2: Verify native dialog open, close, and Escape behavior.
+- [ ] HW3-T3: Verify keyboard access and focus management.
+- [ ] HW3-T4: Complete browser verification and delivery documentation.
+
+## Acceptance Criteria
+
+### HW3-T1: URL State
+Status: TODO
+
+- [ ] Read the selected category and photo ID from search parameters.
+- [ ] Update `photoId` when opening a photo.
+- [ ] Remove only `photoId` when closing and preserve the category.
+- [ ] Open the selected photo from a direct URL.
+- [ ] Cover URL behavior with automated tests.
+
+### HW3-T2: Native Dialog
+Status: TODO
+
+- [ ] Use a native `<dialog>` opened with `showModal()`.
+- [ ] Close through the Close button and Escape.
+- [ ] Do not open a dialog for an unknown photo ID.
+- [ ] Cover dialog behavior with automated tests.
+
+### HW3-T3: Keyboard and Focus
+Status: TODO
+
+- [ ] Open photos with keyboard activation.
+- [ ] Keep focus usable while the native modal is open.
+- [ ] Restore focus to the opening button after closing.
+- [ ] Verify keyboard behavior in Chrome.
+
+### HW3-T4: Verification and Delivery
+Status: TODO
+
+- [ ] Run tests, lint, and production build.
+- [ ] Verify direct photo URLs, browser Back/Forward, and Escape in Chrome.
+- [ ] Record results in `VERIFICATION.md`.
+- [ ] Record any HW3-specific AI failures in `AI_FAILURE_AUDIT.md`.
+- [ ] Commit the tasks separately and push the branch.
