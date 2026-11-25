@@ -46,5 +46,19 @@ describe('detail route handling', () => {
     const details = screen.getByRole('region', { name: 'Person details' })
     expect(await within(details).findByText(target.role)).toBeInTheDocument()
     expect(within(sidebar).getByRole('link', { name: target.name })).toHaveAttribute('aria-current', 'page')
+    })
+    
+      it('HW2-T1: shows Himass dossier at /dossier/himass', async () => {
+    renderAt('/dossier/himass')
+    expect(
+      await screen.findByRole('heading', { name: 'Himass Dossier' }),
+    ).toBeInTheDocument()
   })
-})
+
+  it('HW2-T1: shows TanVuu dossier at /dossier/tanvuu', async () => {
+    renderAt('/dossier/tanvuu')
+    expect(
+      await screen.findByRole('heading', { name: 'TanVuu Dossier' }),
+    ).toBeInTheDocument()
+  })
+  })
