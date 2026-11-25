@@ -84,12 +84,12 @@ Build a full-stack appeal tribunal for the Himass and TanVuu case study.
 ## Acceptance Criteria
 
 ### HW2-T1: Player Dossiers
-Status: TODO
+Status: DONE
 
-- [ ] Support `/dossier/himass` and `/dossier/tanvuu`.
-- [ ] Show the matching player's case information at each route.
-- [ ] Handle an unknown player ID with a clear not-found state.
-- [ ] Cover route behavior with automated tests.
+- [x] Support `/dossier/himass` and `/dossier/tanvuu`.
+- [x] Show a player-specific dossier heading for each supported route.
+- [x] Handle an unknown player ID with a clear not-found state.
+- [x] Cover route behavior with automated tests.
 
 ### HW2-T2: Appeal Form
 Status: DONE
