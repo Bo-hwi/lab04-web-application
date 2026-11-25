@@ -20,3 +20,26 @@
 | B-09 | Claude | Instructions to fix ex1 DevTools note did not say "delete the old line" clearly; result: two notes, then an extra non-conventional commit `6aad15b add verification` | AI review of the pushed `VERIFICATION.md` | Duplicate removed during translation |
 | B-10 | Codex + editor | Codex and the student edited `TASK_DECOMPOSITION.md` while switching branches with an unsaved tab | VS Code "content of the file is newer" on save | Closed tab without saving, enabled Auto Save, one assistant at a time |
 | B-11 | Claude | First mutation attempt with `sed '/{...rest}/d'` also deleted a comment line, producing an invalid run (13 tests instead of 17) | AI noticed the wrong test count | Re-ran deleting only the exact `{...rest}` line |
+
+# Homework 2: AI Failure Audit
+
+## Observed implementation failures
+
+- A test was temporarily placed inside another test, so Vitest could not collect it. The test declarations were moved to the surrounding `describe` suite.
+- A route edit produced mismatched JSX closing tags around `Routes`. The route tree was corrected before the dossier tests passed.
+- A test command was first run from the repository root, which has no `package.json`. Running it from `client` resolved the `ENOENT` error.
+
+## Architecture decisions
+
+- `FormProvider` accepts a validator function and defaults to the existing registration form validator. The appeal form can therefore use its own rules without changing the existing form behavior.
+- Appeal validation is derived synchronously during render. It does not use a validation `useEffect` chain.
+- Each appeal input uses the shared `InputField`, which associates its label and validation message with the input for accessibility.
+- The SLA hook calculates remaining time from an absolute deadline and `Date.now()`. It recalculates on a timer tick and when the document becomes visible, and cleans up both listeners when unmounted.
+
+## Verification evidence
+
+- Appeal form tests: 3 passed.
+- SLA timer tests: 3 passed.
+- Full client suite: 32 tests passed.
+- Lint: passed after adding the `getRemaining` callback dependency.
+- Production build: passed.

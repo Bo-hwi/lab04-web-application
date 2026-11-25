@@ -29,3 +29,22 @@ Independent check: AI cloned `0c94379` from GitHub and re-ran `npm test` (19 pas
 
 ## 4. Static check
 - `grep -rn "useEffect" client/src/form` → only a comment in `validate.js`, no hook call.
+
+# Homework 2 Final Verification
+
+Date: 2026-11-26
+
+## Automated checks
+
+- `npm test`: 8 test files passed, 32 tests passed.
+- `npm run lint`: passed with no warnings or errors.
+- `npm run build`: passed; Vite transformed 38 modules.
+
+## Browser checks
+
+- `/dossier/tanvuu`: dossier heading and appeal form displayed.
+- `/dossier/himass`: dossier heading and appeal form displayed.
+- `/dossier/unknown`: clear “Not Found” state displayed.
+- Empty appeal submission displayed the reason validation error.
+- Evidence URL without a description displayed the cross-field validation error.
+- A valid appeal displayed the confirmation status.
