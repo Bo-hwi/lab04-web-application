@@ -1,0 +1,29 @@
+[
+  {
+    "label": "4174:gallery",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4174:dialog",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4174:keyboard-and-text-scaling",
+    "tabContained": true,
+    "backTabContained": true,
+    "focusRestored": true,
+    "zoom": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "dialogScrollWidth": 290,
+      "dialogClientWidth": 290
+    }
+  },
+  {
+    "label": "4174:dark-dialog",
+    "violations": [],
+    "incomplete": []
+  }
+]

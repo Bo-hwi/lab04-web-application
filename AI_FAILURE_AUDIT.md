@@ -83,12 +83,12 @@ TDD iteration.
 
 ## Current Audit Summary
 
-- Confirmed findings: 4
+- Historical findings: 4; review corrections are recorded below.
 - Finding 001: Resolved
 - Finding 002: Process correction adopted
 - Finding 003: Resolved
 - Finding 004: Resolved
-- Outstanding technical failures: None confirmed
+- Current limitations: see VERIFICATION.md; no full manual accessibility audit is claimed.
 
 ## Finding 003: Missing Native Dialog API in jsdom
 
@@ -131,3 +131,12 @@ Status: RESOLVED
 ### Prevention
 - Keep jsdom mocks limited to browser APIs the environment does not implement.
 - Verify native dialog focus behavior in a real browser.
+## Review corrections ? 2026-11-26
+
+The review found unbounded dialog images, mismatched photo descriptions, a blank root route, duplicated verification sections, and completion claims without Performance evidence. Fixed responsive CSS, added root/fallback routes, replaced the canoe with a verified building photo, and renamed the waterfall. Stored and optimized images locally; saved production Lighthouse reports and actual 320/375px measurements. Rewrote verification as one current result. Completion now distinguishes measured scores, historical browser checks and remaining manual audits.
+
+TDD disclosure: the new gallery repair tests were added alongside implementation; RED was not observed for those tests. Desktop Performance 100 is verified; mobile results are reported separately rather than treating desktop evidence as mobile evidence.
+
+## Follow-up evidence
+
+The mobile HW1 score of 99 was not silently treated as 100. Split React/router bundles using the supported Vite 8 Rolldown configuration, rebuilt, and measured 100/100 on both mobile and desktop; saved both new reports while retaining earlier attempts. Accessibility evidence is now broader than Lighthouse: real keyboard, reflow, root-text sizing and tagged axe checks. Native screen-reader speech remains untested.

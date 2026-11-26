@@ -79,20 +79,37 @@ Status: DONE
 
 ### H1-T5: Quality Verification
 
-Status: DONE
+Status: IN PROGRESS
 
 - [x] Tests pass for implemented features.
 - [x] ESLint reports zero errors.
 - [x] Production build succeeds.
-- [x] Verify responsive layout in a narrow browser window.
-- [x] Record Lighthouse results (Accessibility 100; Performance timed out and remains unverified).
-- [ ] Record accessibility results.
+- [x] Verify responsive layout in real Edge at 320px and 375px (see evidence/).
+- [x] Record desktop Performance 100/100 from a saved production Lighthouse report.
+- [x] Record mobile Performance 100/100 (latest saved production run: 100).
+- [x] Record axe WCAG A/AA checks and real-browser keyboard/reflow evidence.
+- [ ] Verify native screen-reader speech output before claiming exhaustive WCAG compliance.
 
 ### H1-T6: Delivery
 
 Status: IN PROGRESS
 
-- [ ] Finalize TASK_DECOMPOSITION.md.
-- [ ] Finalize VERIFICATION.md.
-- [ ] Finalize AI_FAILURE_AUDIT.md.
+- [x] Finalize TASK_DECOMPOSITION.md.
+- [x] Finalize VERIFICATION.md.
+- [x] Finalize AI_FAILURE_AUDIT.md.
 - [ ] Commit and push changes.
+## Naming and repair scope
+
+The supplied review reports inconsistent Homework numbers in the deck. Existing branch names remain the contract: HW1 = photo gallery, HW2 = appeal tribunal, HW3 = URL-synchronized photo dialog. Card-swipe/Mongoose is implemented separately in the hw4-card-swipe working tree (.repairs/hw4); its files are not merged into this gallery branch. This is not a claim that the entire Lab 4 is complete.
+
+## Review corrections (2026-11-26)
+
+- Responsive images and bounded, scrollable native dialog.
+- Architecture image now shows a building; Forest Waterfall title/alt match the waterfall.
+- Photos are stored locally; source IDs are recorded in evidence/README.md.
+- Root redirect and unknown-path recovery are covered by tests.
+- Delivery remains in progress until any required push and manual accessibility audit are completed.
+
+## Follow-up evidence status
+
+All implemented feature tests, lint and build checks pass. The latest saved mobile and desktop Lighthouse runs score 100/100. Keyboard, root-text sizing, reflow and tagged axe checks are recorded in verification. Delivery stays in progress for local commit/push and native screen-reader speech review; no blanket full-lab certification is claimed.

@@ -72,7 +72,7 @@ describe('Photo Gallery', () => {
 
     expect(screen.getByText('Mountain Landscape')).toBeInTheDocument()
     expect(screen.getByText('City Architecture')).toBeInTheDocument()
-    expect(screen.getByText('Forest Path')).toBeInTheDocument()
+    expect(screen.getByText('Forest Waterfall')).toBeInTheDocument()
   })
 
   it('renders three accessible images', () => {
@@ -91,7 +91,7 @@ describe('Photo Gallery', () => {
     renderGallery('/gallery?category=nature')
 
     expect(screen.getByText('Mountain Landscape')).toBeInTheDocument()
-    expect(screen.getByText('Forest Path')).toBeInTheDocument()
+    expect(screen.getByText('Forest Waterfall')).toBeInTheDocument()
     expect(screen.queryByText('City Architecture')).not.toBeInTheDocument()
   })
 
@@ -106,7 +106,7 @@ describe('Photo Gallery', () => {
     )
 
     expect(screen.getByText('Mountain Landscape')).toBeInTheDocument()
-    expect(screen.getByText('Forest Path')).toBeInTheDocument()
+    expect(screen.getByText('Forest Waterfall')).toBeInTheDocument()
     expect(screen.queryByText('City Architecture')).not.toBeInTheDocument()
   })
 

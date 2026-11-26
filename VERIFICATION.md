@@ -1,245 +1,43 @@
+# Gallery verification
 
-# Homework 1: Verification Log
+Date: 2026-11-26 (Asia/Saigon). This is the current result; supersedes the duplicated historical H1-T4 and HW3 sections.
 
-## Environment
+## Automated checks
 
-- React 19
-- React Router v7
-- Vite 8
-- Vitest 5
-- JavaScript / JSX
-- Working directory: client/
+- Client tests: 17/17 PASS.
+- ESLint: PASS, zero errors.
+- Production build: PASS (Vite 8).
+- Root redirect preserves query parameters; unknown paths show Not Found with a gallery link.
+- Existing tests cover category filtering, native dialog URL state, keyboard activation, invalid photo IDs and focus restoration.
 
-## H1-T1.1: Gallery Heading
+## Real browser checks
 
-### RED
-- Expected "Photo Gallery" heading.
-- Observed: 1 passed, 1 failed.
-- Result: RED confirmed.
+Headless Microsoft Edge, production preview.
 
-### GREEN
-- Implemented heading in App.jsx.
-- Observed: 2 passed, 0 failed.
-- ESLint: PASS.
+- Widths 320 and 375 CSS pixels: document scroll width equals viewport width.
+- Dialog and image remain inside the viewport; dialog has no horizontal overflow.
+- All three local photos decode successfully.
+- Escape closes the dialog and returns focus to its opening button.
+- Measurements and screenshots: see evidence/.
 
-## H1-T1.2: Photo Titles
+## Performance and accessibility
 
-### RED
-- Expected three photo titles.
-- Observed: 2 passed, 1 failed.
-- Result: RED confirmed.
+- Lighthouse 13.6.0, default simulated mobile throttling, production /gallery.
+- Reports are saved under evidence/ as HTML and JSON. Initial production results were 98-99 Performance / 100 Accessibility.
+- Images are local WebP assets with responsive sources; first image is preloaded and prioritized, later thumbnails load lazily.
+- Desktop: Performance 100 / Accessibility 100.
+- Latest mobile production run after React/router bundle separation: Performance 100 / Accessibility 100. See lighthouse-hw1-mobile-rerun.report.json; desktop-rerun also scores 100/100.
+- Exact metrics and every recorded attempt: see evidence/README.md.
+- A Lighthouse accessibility score does not replace a complete manual screen reader audit; that audit remains unverified.
 
-### GREEN
-- Rendered photo titles using Array.map().
-- Observed: 3 passed, 0 failed.
-- ESLint: PASS.
+## Reproduction
 
-## H1-T1.3: Accessible Images
+Run npm.cmd test, npm.cmd run lint and npm.cmd run build from client/. Start npm.cmd run preview -- --host 127.0.0.1 --port 4174. Use Lighthouse CLI with --only-categories=performance,accessibility and Edge headless. Lighthouse reports include their exact config, browser version and audit timestamps.
 
-### RED
-- Observed: 3 passed, 1 failed.
-- Result: RED confirmed.
+## History
 
-### GREEN
-- Rendered images with src and alt attributes.
-- Tests: 4/4 PASS.
-- ESLint: PASS.
-- Build: PASS, 358 ms.
+Previous verification recorded a Lighthouse timeout and duplicated H1-T4/HW3 summaries. Those statements are superseded by the reports above. Native Tab/Shift+Tab and browser history checks recorded previously are historical observations unless explicitly covered by the current automated tests.
 
-## H1-T2.0: Router Setup
+## Follow-up accessibility checks
 
-Implementation:
-- BrowserRouter in main.jsx.
-- MemoryRouter in App.test.jsx.
-
-Verification:
-- Tests: 4/4 PASS.
-- ESLint: PASS.
-- Build: PASS, 398 ms.
-
-## H1-T2.1: URL Category Filtering
-
-### RED
-- Tests: 4 passed, 1 failed.
-- Result: RED confirmed.
-
-### GREEN
-- Read category using useSearchParams().
-- Filtered photos using Array.filter().
-- Tests: 5/5 PASS.
-- ESLint: PASS.
-- Build: PASS, 282 ms.
-
-## H1-T2.2: Category Selection Controls
-
-### RED
-- Tests: 5 passed, 2 failed.
-- Result: RED confirmed.
-
-### GREEN
-- Added All, Nature and Architecture buttons.
-- Updated category using setSearchParams().
-- Tests: 7/7 PASS.
-- ESLint: PASS.
-- Build: PASS, 349 ms.
-
-## H1-T2.3: Explicit Gallery Route
-
-Implementation:
-- BrowserRouter wraps Routes in main.jsx.
-- Route path="/gallery" renders App.
-
-Automated verification:
-- npm test: 7/7 PASS.
-- npm run lint: PASS.
-- npm run build: PASS, 267 ms.
-
-Browser verification:
-- Nature filter persisted after F5: PASS.
-- Architecture filter at /gallery?category=architecture: PASS.
-
-Result: H1-T2 acceptance criteria satisfied.
-
-## Current Verification Summary
-
-| Check | Result |
-| --- | --- |
-| Automated tests | PASS (15/15) |
-| ESLint | PASS |
-| Production build | PASS |
-| URL category filtering | PASS |
-| Category selection | PASS |
-| Refresh persistence | PASS |
-| Explicit gallery route | PASS |
-| Architecture browser check | PASS |
-| Browser image loading | NOT VERIFIED |
-| Responsive layout | PASS |
-| Lighthouse | Accessibility 100; Performance NOT VERIFIED (timeout) |
-| Native photo dialog | PASS |
-
-## Final Verification
-
-Status: IN PROGRESS
-
-Repeat automated and manual verification after
-H1-T3 through H1-T5.
-
-## H1-T3: Native Photo Dialog
-
-Status: DONE
-
-### RED
-- Tests: 7 passed, 1 failed.
-- Missing button: View Mountain Landscape.
-- RED confirmed.
-
-### GREEN
-- Implemented native HTML dialog.
-- Synchronized photoId using React Router.
-- Mocked showModal() and close() in jsdom tests.
-- Tests: 11/11 PASS.
-- ESLint: PASS.
-- Production build: PASS, 248 ms.
-
-### Browser Verification
-- Open photo dialog: PASS.
-- URL photoId synchronization: PASS.
-- Escape closes dialog: PASS.
-- Back closes dialog: PASS.
-- Forward reopens dialog: PASS.
-- Close preserves category: PASS.
-
-### Remaining
-- Focus restoration: NOT VERIFIED.
-- Keyboard accessibility: NOT VERIFIED.
-- Responsive layout: NOT VERIFIED.
-- Lighthouse: NOT VERIFIED.
-
-## H1-T4: Keyboard and Accessibility
-
-Status: DONE
-
-### Automated Verification
-- Tests: 15/15 PASS.
-- ESLint: PASS.
-- Production build: PASS, 232 ms.
-- Keyboard activation with Enter: PASS.
-- Keyboard activation with Space: PASS.
-- Focus restoration after closing: PASS in automated test with mocked dialog focus behavior.
-- Invalid photoId: PASS.
-
-### Browser Verification
-- Tab navigation in dialog: PASS.
-- Shift+Tab navigation in dialog: PASS.
-- Escape closes dialog and restores focus: PASS.
-- Close restores focus to the opening button: PASS.
-
-Status: DONE
-
-### Automated Verification
-- Tests: 15/15 PASS.
-- ESLint: PASS.
-- Production build: PASS, 232 ms.
-- Keyboard activation with Enter: PASS.
-- Keyboard activation with Space: PASS.
-- Focus restoration after closing: PASS in automated test with mocked dialog focus behavior.
-- Invalid photoId: PASS.
-
-### Browser Verification
-- Tab navigation in dialog: PASS.
-- Shift+Tab navigation in dialog: PASS.
-- Escape closes dialog and restores focus: PASS.
-- Close restores focus to the opening button: PASS.
-
-Status: DONE
-
-### Automated Verification
-- Tests: 15/15 PASS.
-- ESLint: PASS.
-- Production build: PASS, 232 ms.
-- Keyboard activation with Enter: PASS.
-- Keyboard activation with Space: PASS.
-- Focus restoration after closing: PASS in automated test with mocked dialog focus behavior.
-- Invalid photoId: PASS.
-
-### Browser Verification
-- Tab navigation in dialog: PASS.
-- Shift+Tab navigation in dialog: PASS.
-- Escape closes dialog and restores focus: PASS.
-- Close restores focus to the opening button: PASS.
-
-Status: DONE
-
-### Automated Verification
-- Tests: 15/15 PASS.
-- ESLint: PASS.
-- Production build: PASS, 232 ms.
-- Keyboard activation with Enter: PASS.
-- Keyboard activation with Space: PASS.
-- Focus restoration after closing: PASS.
-- Invalid photoId: PASS.
-
-### Chrome Verification
-- Tab navigation in dialog: PASS.
-- Shift+Tab navigation in dialog: PASS.
-- Escape closes dialog and restores focus: PASS.
-
-## H1-T5: Responsive Layout
-
-Status: IN PROGRESS
-
-### Narrow Window Browser Verification
-- Gallery title remains visible: PASS.
-- No horizontal scrolling: PASS.
-- Dialog fits or can be scrolled to reach Close: PASS.
-- Category buttons remain usable: PASS.
-- Images stay within the viewport width: PASS.
-
-### Lighthouse Verification
-- Accessibility score: 100 (mobile run).
-- Manual checks: keyboard focusability and logical tab order reviewed in Chrome.
-- Performance: NOT VERIFIED — Lighthouse timed out.
-
-### Remaining
-- Performance: NOT VERIFIED because Lighthouse timed out.
-- Complete a manual accessibility audit.
+Real Edge: Tab/Shift+Tab/Escape and opener focus restoration passed. At 320px, doubled the root font size and verified dialog/document containment. Axe WCAG 2/2.1 A/AA and 2.2 AA tags returned zero violations and zero incomplete results for checked light/dark gallery/modal states. These observations supplement the earlier verification; actual screen-reader speech output remains untested. See evidence/browser-followup.json (HW1) or evidence/followup-browser.json (HW3).

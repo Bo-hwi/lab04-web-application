@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router'
 import { photos } from './photos'
@@ -38,6 +37,7 @@ function App() {
   }
 
   function handleClosePhoto() {
+    if (!selectedPhotoId) return
     updateParams('photoId', null)
   }
 
@@ -83,17 +83,19 @@ function App() {
       </nav>
 
       <section aria-label="Photo collection">
-        {filteredPhotos.map((photo) => (
+        {filteredPhotos.map((photo, index) => (
           <article key={photo.id}>
             <img
-              src={photo.src}
+              src={photo.thumbnailSrc}
+              srcSet={`${photo.thumbnailSrc} 300w, ${photo.src} 600w`}
+              sizes="(max-width: 334px) calc(100vw - 34px), 300px"
               alt={photo.alt}
               width="300"
               height="200"
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              loading={index === 0 ? 'eager' : 'lazy'}
             />
-
             <h2>{photo.title}</h2>
-
             <button
               type="button"
               onClick={() => handleOpenPhoto(photo.id)}
@@ -116,14 +118,12 @@ function App() {
         {selectedPhoto && (
           <>
             <h2>{selectedPhoto.title}</h2>
-
             <img
               src={selectedPhoto.src}
               alt={selectedPhoto.alt}
               width="600"
               height="400"
             />
-
             <button type="button" onClick={handleClosePhoto}>
               Close
             </button>
