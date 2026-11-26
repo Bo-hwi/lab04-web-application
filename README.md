@@ -56,3 +56,9 @@ See `TASK_DECOMPOSITION.md` for request/response contracts. Reads use Mongoose `
 Implementation references: [Mongoose 8 models](https://mongoosejs.com/docs/8.x/docs/models.html), [lean queries](https://mongoosejs.com/docs/8.x/docs/tutorials/lean.html), [validation](https://mongoosejs.com/docs/8.x/docs/validation.html).
 
 Actual test/browser results and remaining manual checks are recorded in `VERIFICATION.md`.
+
+## Other Lab 4 exercises
+
+Use the [repository submission guide](https://github.com/Bo-hwi/lab04-web-application/blob/main/README.md) to locate all exercise branches. HW1, HW2 and HW3 are intentionally separate from this swipe application.
+
+Implementation checkpoint [a2d5b05](https://github.com/Bo-hwi/lab04-web-application/commit/a2d5b05) was verified on origin on 2026-11-27. See [VERIFICATION.md](VERIFICATION.md) for the recorded test and browser evidence.

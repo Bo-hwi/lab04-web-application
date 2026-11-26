@@ -30,4 +30,8 @@ Microsoft Edge headless, production Vite preview and a separate temporary MongoD
 
 ## Scope and limitations
 
-The demonstration uses fictional profiles and an explicit score policy. A local session UUID is not authentication. The backend is designed for one classroom API process; multi-worker strict ordering requires database-level coordination. Native screen-reader speech output has not been tested, so no blanket WCAG certification is claimed. Nothing has been committed or pushed in this repair session.
+The demonstration uses fictional profiles and an explicit score policy. A local session UUID is not authentication. The backend is designed for one classroom API process; multi-worker strict ordering requires database-level coordination. Native screen-reader speech output has not been tested, so no blanket WCAG certification is claimed. Implementation commit a2d5b05 was published on origin/hw4-card-swipe and verified on 2026-11-27.
+
+## Local setup follow-up
+
+On 2026-11-27 the user reported that the configured MongoDB-backed application retained its choices after F5. This is a user-observed local result, separate from the isolated automated persistence suite above.

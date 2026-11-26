@@ -25,4 +25,4 @@ The deck labels this exercise HW1 in its specification and HW4 in its code contr
 - [x] Implement and test MongoDB persistence, validation, retries and LIFO undo.
 - [x] Verify responsive layout and keyboard interaction in a real browser.
 - [x] Record tests, lint, build, limitations and setup instructions.
-- [ ] Commit/push delivery (changes remain local; publication was not requested).
+- [x] Commit and push the implementation checkpoint (a2d5b05), verified against origin on 2026-11-27.
