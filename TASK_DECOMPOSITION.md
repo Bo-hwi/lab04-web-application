@@ -79,7 +79,7 @@ Build a full-stack appeal tribunal for the Himass and TanVuu case study.
 - [x] HW2-T1: Build player dossier routes for Himass and TanVuu.
 - [x] HW2-T2: Build the context-driven appeal form with synchronous validation.
 - [x] HW2-T3: Implement and verify the zero-drift SLA countdown hook.
-- [ ] HW2-T4: Complete the post-mortem audit and final verification.
+- [x] HW2-T4: Publish the post-mortem audit and recorded verification.
 
 ## Acceptance Criteria
 
@@ -108,12 +108,12 @@ Status: DONE
 - [x] Test countdown updates and visibility resynchronization.
 
 ### HW2-T4: Audit and Delivery
-Status: IN PROGRESS
+Status: DONE - published implementation checkpoint 01d9a07
 
 - [x] Record observed AI failures and fixes in `AI_FAILURE_AUDIT.md`.
 - [x] Run tests, lint, and production build.
 - [x] Record the scope of browser verification in `VERIFICATION.md`.
-- [ ] Commit each completed task separately and push the branch.
+- [x] Publish the implementation and repair checkpoint (01d9a07). Historical commit-process deviations remain documented above.
 ## Review corrections - 2026-11-26
 
 HW2-T1 now has dedicated /dossier/unknown and inherited-property ID regression tests, independent of the old /people/999 test. Confirmations store a submission snapshot; invalid resubmission clears it. Form state resets on player changes. The SLA hook is displayed on valid dossiers with an explicit demo deadline of 2026-12-01T00:00:00Z (not a production SLA policy).
