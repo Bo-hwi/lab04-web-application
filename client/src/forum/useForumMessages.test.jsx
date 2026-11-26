@@ -29,6 +29,44 @@ afterEach(() => {
 })
 
 describe('useForumMessages', () => {
+  it('rejects a POST whose JSON resolves after unmount without refetching', async () => {
+    let resolveJson
+    const fetchMock = vi.fn(async (_url, options) => ({
+      ok: true,
+      json: options?.method === 'POST' ? () => new Promise((resolve) => { resolveJson = resolve }) : async () => [],
+    }))
+    vi.stubGlobal('fetch', fetchMock)
+    const { result, unmount } = renderHook(() => useForumMessages('nasa'))
+    await waitFor(() => expect(result.current.loading).toBe(false))
+    let posting
+    act(() => { posting = result.current.postMessage({ author: 'An', text: 'hello' }).catch((error) => error) })
+    await waitFor(() => expect(resolveJson).toBeTypeOf('function'))
+    unmount()
+    await act(async () => resolveJson({ id: 'late' }))
+    expect((await posting).name).toBe('AbortError')
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+  })
+  it('ignores a late JSON result after the GET is aborted', async () => {
+    let resolveJson
+    vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: () => new Promise((resolve) => { resolveJson = resolve }) })))
+    const { result, unmount } = renderHook(() => useForumMessages('nasa'))
+    await waitFor(() => expect(resolveJson).toBeTypeOf('function'))
+    unmount()
+    await act(async () => resolveJson([{ id: 'late' }]))
+    expect(result.current.data).toEqual([])
+  })
+
+  it('aborts POST when switching channels and does not refetch from its late result', async () => {
+    const calls = installFetchMock()
+    const { result, rerender } = renderHook(({ channel }) => useForumMessages(channel), { initialProps: { channel: 'nasa' } })
+    await act(async () => calls[0].resolve(jsonResponse([])))
+    let posting
+    act(() => { posting = result.current.postMessage({ author: 'An', text: 'hello' }).catch((error) => error) })
+    rerender({ channel: 'other' })
+    expect(calls[1].options.signal.aborted).toBe(true)
+    expect((await posting).name).toBe('AbortError')
+    expect(calls).toHaveLength(3)
+  })
   it('H1: loads messages of the given channel from the contract URL', async () => {
     const calls = installFetchMock()
     const { result } = renderHook(() => useForumMessages('nasa'))

@@ -65,4 +65,8 @@ Channels: `nasa`, `esports-tribunal`, `notNasa`.
 
 ## 7. Deviations from plan
 - `ex2` and `ex3` were rewritten with `git push --force-with-lease`: a wrong `.gitignore` line (`*.pptxClaude outputs/`) caused the server files and the course slide `.pptx` to be committed on `ex2` (AI_FAILURE_AUDIT B-12). The history on GitHub is now clean.
-- `ForumPage` has no dedicated automated test; it is verified manually in the browser (VERIFICATION §3) and indirectly by H1–H5.
+- `ForumPage` now has a dedicated automated regression test covering whitespace rejection, trimmed payloads and POST signals; hook tests cover cancellation and late results.
+
+## Review repair contract - 2026-11-26
+
+Use one pure validation function in both client and server. Every fetch must carry an AbortController signal, and aborted responses must not update data or refetch. Each input exposes its own ID and accessible errors.

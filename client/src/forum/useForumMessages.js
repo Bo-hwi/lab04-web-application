@@ -1,9 +1,18 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 // Contract (TASK_DECOMPOSITION §3): /api/channels/:channelId/messages
 const messagesUrl = (channelId) => `/api/channels/${encodeURIComponent(channelId)}/messages`
 
 export function useForumMessages(channelId) {
+  const postControllers = useRef(new Set())
+
+  useEffect(() => {
+    const controllers = postControllers.current
+    return () => {
+      for (const controller of controllers) controller.abort()
+      controllers.clear()
+    }
+  }, [channelId])
   // Bumped after a successful POST → the effect below refetches
   const [reloadToken, setReloadToken] = useState(0)
   const [result, setResult] = useState({ key: null, channelId: null, data: [], error: null })
@@ -20,9 +29,11 @@ export function useForumMessages(channelId) {
         if (!res.ok) throw new Error(`HTTP ${res.status}`)
         return res.json()
       })
-      .then((data) => setResult({ key, channelId, data, error: null }))
+      .then((data) => {
+        if (!controller.signal.aborted) setResult({ key, channelId, data, error: null })
+      })
       .catch((err) => {
-        if (err.name === 'AbortError') return
+        if (controller.signal.aborted || err.name === 'AbortError') return
         setResult({ key, channelId, data: [], error: err.message })
       })
 
@@ -37,15 +48,26 @@ export function useForumMessages(channelId) {
 
   const postMessage = useCallback(
     async (payload) => {
-      const res = await fetch(messagesUrl(channelId), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const created = await res.json()
-      setReloadToken((t) => t + 1)
-      return created
+      const controller = new AbortController()
+      postControllers.current.add(controller)
+      try {
+        const res = await fetch(messagesUrl(channelId), {
+          signal: controller.signal,
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const created = await res.json()
+        controller.signal.throwIfAborted()
+        setReloadToken((t) => t + 1)
+        return created
+      } catch (error) {
+        controller.signal.throwIfAborted()
+        throw error
+      } finally {
+        postControllers.current.delete(controller)
+      }
     },
     [channelId],
   )

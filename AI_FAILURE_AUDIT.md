@@ -22,3 +22,15 @@
 | B-13 | Claude (app) | The desktop app saved an AI draft into the repo as `Claude outputs/TASK_DECOMPOSITION.md`; it was committed on `ex2` | AI review of the commit stat | `git rm --cached`, added `Claude outputs/` to `.gitignore` |
 | B-14 | Claude | Wrote the real implementation as `server/src/app.real.js` inside the repo; the student's `git add` committed it in the "test" commit, making that commit meaningless | AI review of the GitHub history | Rebuilt `ex3`; later files were kept in the ignored `_fix/` folder |
 | B-15 | Claude | Gave `# pass / # fail` (Node 22 output) as the expected result; Node 26 prints `ℹ pass / ℹ fail` | Student reported "different result" | Clarified that the counts are what matter |
+
+## Review repairs - 2026-11-26
+
+Client: 28/28 tests, lint and production build passed. Server: 6/6 tests passed. Form validation uses the same pure validateMessage function as the server, including trim and normalized length limits. GET ignores aborted results; POST has a per-request AbortController, aborts on channel switch/unmount, and checks cancellation after JSON before refetching. Tests cover whitespace, trimmed payloads and late responses. No new manual ex3 browser check is claimed.
+
+Prevention: cover concrete edge cases and distinguish test evidence from browser observations; do not infer performance or full-lab completion from source code.
+
+TDD disclosure: new ex3 repair tests were added after the implementation; their RED state was not observed. Only the final green result is claimed.
+
+## Follow-up fixes - 2026-11-26
+
+Latest client suite: 28/28; lint/build passed. Corrected the stale ForumPage test documentation and applied the inherited app-shell sizing/dark-error contrast corrections. Dedicated form and hook regression tests remain present. No new ex3 manual network-throttling observation is claimed.

@@ -36,3 +36,11 @@ Error log (paste the exact message shown when the server is stopped):
 Could not load messages: HTTP 502
 ```
 (Checked by the student in Chrome DevTools at 12:25.)
+
+## Earlier review repairs - 2026-11-26 (history)
+
+Client: 28/28 tests, lint and production build passed. Server: 6/6 tests passed. Form validation uses the same pure validateMessage function as the server, including trim and normalized length limits. GET ignores aborted results; POST has a per-request AbortController, aborts on channel switch/unmount, and checks cancellation after JSON before refetching. Tests cover whitespace, trimmed payloads and late responses. No new manual ex3 browser check is claimed.
+
+## Follow-up verification - 2026-11-26
+
+Latest client suite: 28/28; lint/build passed. Corrected the stale ForumPage test documentation and applied the inherited app-shell sizing/dark-error contrast corrections. Dedicated form and hook regression tests remain present. No new ex3 manual network-throttling observation is claimed.
