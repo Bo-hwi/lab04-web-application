@@ -1,0 +1,30 @@
+[
+  {
+    "label": "hw4:initial",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:after-pointer",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:keyboard-button-focus",
+    "savePreservesFocus": true,
+    "finalUndoFocusesDeck": true
+  },
+  {
+    "label": "hw4:dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:browser-flow",
+    "keyboard": true,
+    "pointer": true,
+    "reloadPersistence": true,
+    "lifoUndo": true,
+    "overflow": false
+  }
+]
