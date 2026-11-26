@@ -1,0 +1,37 @@
+:root { font-family: system-ui, sans-serif; color: #262031; background: #f7f4fa; font-synthesis: none; line-height: 1.6; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 760px; margin: auto; padding: 36px 20px; }
+h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.15; letter-spacing: -.04em; }
+h2 { font-size: 2rem; line-height: 1.2; }
+p { overflow-wrap: anywhere; }
+.eyebrow, .profile-number { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: #594866; }
+.intro { margin-bottom: 32px; }
+.deck { border-top: 2px solid #6c4d85; padding-top: 16px; border-radius: 4px; }
+.deck-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+output { font-size: 2rem; font-weight: 700; }
+.card-slot { min-height: 300px; display: grid; margin-block: 24px; }
+.profile-card, .empty { background: #fff; border: 1px solid #c7b9d2; border-radius: 12px; padding: 28px; box-shadow: 0 6px 18px #44245e0d; }
+.profile-card { touch-action: none; user-select: none; cursor: grab; }
+.profile-card:active { cursor: grabbing; }
+.card-hint { color: #594866; margin-top: 40px; font-size: .9rem; }
+.actions, .secondary-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-block: 16px; }
+button { font: inherit; min-height: 44px; padding: 10px 16px; border: 1px solid #6a4d82; border-radius: 6px; cursor: pointer; background: #fff; color: #452264; }
+.actions button { flex: 1 1 140px; }
+.actions button:nth-child(2) { color: #fff; background: #592779; }
+button:hover:not(:disabled) { background: #eee4f5; color: #452264; }
+button:disabled, button[aria-disabled='true'] { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #782c9f; outline-offset: 4px; }
+.save-status { min-height: 26px; color: #51415b; }
+[role="alert"] { border-left: 4px solid #a22135; padding: 12px; color: #85192b; background: #fff0f2; }
+footer { border-top: 1px solid #c7b9d2; margin-top: 24px; font-size: .9rem; }
+@media (max-width: 375px) { main { padding-inline: 16px; } .profile-card { padding: 20px; } }
+@media (prefers-color-scheme: dark) {
+  :root { background: #1d1724; color: #f3edf9; }
+  .profile-card, .empty { background: #2a2133; border-color: #887297; }
+  .eyebrow, .profile-number, .card-hint, .save-status { color: #d0bedf; }
+  button { background: #2a2133; color: #f3edf9; border-color: #b095c5; }
+  .actions button:nth-child(2) { background: #d8b4ef; color: #291139; }
+  :focus-visible { outline-color: #dbb4f1; }
+  [role="alert"] { background: #3d1d2a; color: #ffcad2; border-color: #ff99aa; }
+}

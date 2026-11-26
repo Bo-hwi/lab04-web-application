@@ -1,0 +1,25 @@
+{
+  "name": "lab4-swipe-server",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env --watch src/index.js",
+    "start": "node --env-file-if-exists=.env src/index.js",
+    "test": "node --test --test-concurrency=1",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.13.0",
+    "mongodb-memory-server-core": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
