@@ -30,7 +30,7 @@ Build an accessible photo gallery using React.
 - [x] H1-T3: Open and close photo dialog
 - [x] H1-T4: Implement keyboard and accessibility behavior
 - [ ] H1-T5: Verify responsive design and performance
-- [ ] H1-T6: Complete documentation and push
+- [x] H1-T6: Publish the implementation and its verification documents
 
 ## Acceptance Criteria
 
@@ -92,12 +92,12 @@ Status: IN PROGRESS
 
 ### H1-T6: Delivery
 
-Status: IN PROGRESS
+Status: DONE - published implementation checkpoint fedb3e2
 
 - [x] Finalize TASK_DECOMPOSITION.md.
 - [x] Finalize VERIFICATION.md.
 - [x] Finalize AI_FAILURE_AUDIT.md.
-- [ ] Commit and push changes.
+- [x] Commit and push the implementation checkpoint (fedb3e2).
 
 # Homework 3: URL-Synced Accessible Photo Dialog
 
@@ -119,7 +119,7 @@ The HW1 branch already contained most of this behavior. HW3 added regression cov
 - [x] HW3-T1: Verify URL and photo selection synchronization.
 - [x] HW3-T2: Verify native dialog open, close, and Escape behavior.
 - [x] HW3-T3: Verify keyboard access and focus management.
-- [ ] HW3-T4: Complete verification and delivery of the current repairs.
+- [x] HW3-T4: Publish the verified dialog implementation and repair records.
 
 ## Acceptance Criteria
 
@@ -149,16 +149,16 @@ Status: DONE
 - [x] Verify Escape, Back, and Forward in Chrome.
 
 ### HW3-T4: Verification and Delivery
-Status: IN PROGRESS
+Status: DONE - published implementation checkpoint fedb3e2
 
 - [x] Run tests, lint, and production build.
 - [x] Verify category preservation and dialog behavior in Chrome.
 - [x] Record results in `VERIFICATION.md`.
 - [x] Record HW3-specific findings in `AI_FAILURE_AUDIT.md`.
-- [ ] Commit and push the current repair changes (local only).
+- [x] Commit and push the dialog implementation and repair records (fedb3e2).
 ## Naming and repair scope
 
-The supplied review reports inconsistent Homework numbers in the deck. Existing branch names remain the contract: HW1 = photo gallery, HW2 = appeal tribunal, HW3 = URL-synchronized photo dialog. Card-swipe/Mongoose is implemented separately in the hw4-card-swipe working tree (.repairs/hw4); its files are not merged into this gallery branch. This is not a claim that the entire Lab 4 is complete.
+The supplied review reports inconsistent Homework numbers in the deck. Existing branch names remain the contract: HW1 = photo gallery, HW2 = appeal tribunal, HW3 = URL-synchronized photo dialog. Card-swipe/Mongoose is published separately on [hw4-card-swipe](https://github.com/Bo-hwi/lab04-web-application/tree/hw4-card-swipe); its files are not merged into this gallery branch. This is not a claim that the entire Lab 4 is complete.
 
 ## Review corrections (2026-11-26)
 
@@ -166,8 +166,8 @@ The supplied review reports inconsistent Homework numbers in the deck. Existing 
 - Architecture image now shows a building; Forest Waterfall title/alt match the waterfall.
 - Photos are stored locally; source IDs are recorded in evidence/README.md.
 - Root redirect and unknown-path recovery are covered by tests.
-- Delivery remains in progress until any required push and manual accessibility audit are completed.
+- Implementation publication is complete at the checkpoint above. Native screen-reader speech review remains open under H1-T5.
 
 ## Follow-up evidence status
 
-All implemented feature tests, lint and build checks pass. The latest saved mobile and desktop Lighthouse runs score 100/100. Keyboard, root-text sizing, reflow and tagged axe checks are recorded in verification. Delivery stays in progress for local commit/push and native screen-reader speech review; no blanket full-lab certification is claimed.
+All implemented feature tests, lint and build checks pass. The latest saved mobile and desktop Lighthouse runs score 100/100. Keyboard, root-text sizing, reflow and tagged axe checks are recorded in verification. The implementation checkpoint is published. Native screen-reader speech review remains open under H1-T5; no blanket full-lab certification is claimed.
