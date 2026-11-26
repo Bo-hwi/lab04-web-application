@@ -54,6 +54,57 @@ body {
   margin: 0;
 }
 
+main {
+  padding: 0 16px 24px;
+  min-width: 0;
+}
+
+nav[aria-label="Photo categories"] {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+section[aria-label="Photo collection"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+dialog {
+  box-sizing: border-box;
+  width: min(640px, calc(100% - 24px));
+  max-width: calc(100% - 24px);
+  max-height: calc(100dvh - 24px);
+  padding: 16px;
+  overflow: auto;
+  color: var(--text-h);
+  background: var(--bg);
+}
+
+dialog img {
+  display: block;
+  margin: 0 auto 16px;
+}
+
+button {
+  min-height: 44px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
 #root {
   width: 1126px;
   max-width: 100%;

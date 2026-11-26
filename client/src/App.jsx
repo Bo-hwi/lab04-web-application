@@ -83,9 +83,18 @@ function App() {
       </nav>
 
       <section aria-label="Photo collection">
-        {filteredPhotos.map((photo) => (
+        {filteredPhotos.map((photo, index) => (
           <article key={photo.id}>
-            <img src={photo.src} alt={photo.alt} width="300" height="200" />
+            <img
+              src={photo.thumbnailSrc}
+              srcSet={`${photo.thumbnailSrc} 300w, ${photo.src} 600w`}
+              sizes="(max-width: 334px) calc(100vw - 34px), 300px"
+              alt={photo.alt}
+              width="300"
+              height="200"
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
             <h2>{photo.title}</h2>
             <button
               type="button"

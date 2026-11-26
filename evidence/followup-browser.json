@@ -1,0 +1,108 @@
+[
+  {
+    "label": "4173:gallery",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4173:dialog",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4173:keyboard-and-text-scaling",
+    "tabContained": true,
+    "backTabContained": true,
+    "focusRestored": true,
+    "zoom": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "dialogScrollWidth": 290,
+      "dialogClientWidth": 290
+    }
+  },
+  {
+    "label": "4173:dark-dialog",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4174:gallery",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4174:dialog",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "4174:keyboard-and-text-scaling",
+    "tabContained": true,
+    "backTabContained": true,
+    "focusRestored": true,
+    "zoom": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "dialogScrollWidth": 290,
+      "dialogClientWidth": 290
+    }
+  },
+  {
+    "label": "4174:dark-dialog",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:dossier",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:invalid-form",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:dark-invalid-form",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:landmarks",
+    "mainCount": 1,
+    "overflow": false
+  },
+  {
+    "label": "hw4:initial",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:after-pointer",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:keyboard-button-focus",
+    "savePreservesFocus": true,
+    "finalUndoFocusesDeck": true
+  },
+  {
+    "label": "hw4:dark",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw4:browser-flow",
+    "keyboard": true,
+    "pointer": true,
+    "reloadPersistence": true,
+    "lifoUndo": true,
+    "overflow": false
+  },
+  {
+    "label": "ex1:lazy-navigation-layout",
+    "shifts": []
+  }
+]

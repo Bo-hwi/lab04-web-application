@@ -1,0 +1,74 @@
+[
+  {
+    "port": 4173,
+    "width": 320,
+    "gallery": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "imagesLoaded": true
+    },
+    "dialog": {
+      "left": 12,
+      "right": 308,
+      "clientWidth": 290,
+      "scrollWidth": 290,
+      "imageLeft": 31,
+      "imageRight": 289
+    },
+    "focusRestored": true
+  },
+  {
+    "port": 4173,
+    "width": 375,
+    "gallery": {
+      "viewport": 375,
+      "scrollWidth": 375,
+      "imagesLoaded": true
+    },
+    "dialog": {
+      "left": 12,
+      "right": 363,
+      "clientWidth": 345,
+      "scrollWidth": 345,
+      "imageLeft": 31,
+      "imageRight": 344
+    },
+    "focusRestored": true
+  },
+  {
+    "port": 4174,
+    "width": 320,
+    "gallery": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "imagesLoaded": true
+    },
+    "dialog": {
+      "left": 12,
+      "right": 308,
+      "clientWidth": 290,
+      "scrollWidth": 290,
+      "imageLeft": 31,
+      "imageRight": 289
+    },
+    "focusRestored": true
+  },
+  {
+    "port": 4174,
+    "width": 375,
+    "gallery": {
+      "viewport": 375,
+      "scrollWidth": 375,
+      "imagesLoaded": true
+    },
+    "dialog": {
+      "left": 12,
+      "right": 363,
+      "clientWidth": 345,
+      "scrollWidth": 345,
+      "imageLeft": 31,
+      "imageRight": 344
+    },
+    "focusRestored": true
+  }
+]
