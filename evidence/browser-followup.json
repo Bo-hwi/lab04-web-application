@@ -1,0 +1,22 @@
+[
+  {
+    "label": "hw2:dossier",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:invalid-form",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:dark-invalid-form",
+    "violations": [],
+    "incomplete": []
+  },
+  {
+    "label": "hw2:landmarks",
+    "mainCount": 1,
+    "overflow": false
+  }
+]

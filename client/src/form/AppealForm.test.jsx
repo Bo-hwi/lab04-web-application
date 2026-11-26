@@ -4,6 +4,18 @@ import userEvent from '@testing-library/user-event'
 import AppealForm from './AppealForm.jsx'
 
 describe('appeal form', () => {
+  it('keeps the submitted reason stable while editing the draft', async () => {
+    const user = userEvent.setup()
+    render(<AppealForm playerName="Himass" />)
+    const reason = screen.getByRole('textbox', { name: 'Appeal reason' })
+    const original = 'The replay shows that the reported action was accidental.'
+    await user.type(reason, original)
+    await user.click(screen.getByRole('button', { name: 'Submit appeal' }))
+    await user.clear(reason)
+    expect(screen.getByRole('status')).toHaveTextContent(original)
+    await user.click(screen.getByRole('button', { name: 'Submit appeal' }))
+    expect(screen.queryByRole('status')).not.toBeInTheDocument()
+  })
   it('shows a validation error and clears it as the reason becomes valid', async () => {
     const user = userEvent.setup()
     render(<AppealForm playerName="Himass" />)

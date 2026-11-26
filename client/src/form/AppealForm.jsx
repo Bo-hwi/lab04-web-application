@@ -12,16 +12,16 @@ const INITIAL_VALUES = {
 
 function AppealFormBody({ playerName }) {
   const { values, isValid, setSubmitted } = useFormContext()
-  const [submitted, setSubmittedData] = useState(false)
+  const [submitted, setSubmittedData] = useState(null)
 
   function handleSubmit(event) {
     event.preventDefault()
     setSubmitted(true)
 
     if (isValid) {
-      setSubmittedData(true)
+      setSubmittedData({ ...values, playerName })
     } else {
-      setSubmittedData(false)
+      setSubmittedData(null)
     }
   }
 
@@ -52,9 +52,9 @@ function AppealFormBody({ playerName }) {
 
       {submitted && (
         <p role="status">
-          Appeal for {playerName} is ready for review.
+          Appeal for {submitted.playerName} is ready for review.
           {' '}
-          Reason: {values.appealReason}
+          Reason: {submitted.appealReason}
         </p>
       )}
     </section>

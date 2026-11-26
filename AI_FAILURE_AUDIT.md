@@ -43,3 +43,12 @@
 - Full client suite: 32 tests passed.
 - Lint: passed after adding the `getRemaining` callback dependency.
 - Production build: passed.
+## Review repairs - 2026-11-26
+
+RED: 4 regressions failed before the fix (edited submission, toString, constructor, __proto__). GREEN: 38/38 client tests; lint and production build passed. Dedicated unknown dossier test passes. The SLA component test verifies deadline display and expiry; no new manual HW2 browser check is claimed.
+
+Prevention: cover concrete edge cases and distinguish test evidence from browser observations; do not infer performance or full-lab completion from source code.
+
+## Follow-up fixes - 2026-11-26
+
+Latest client suite: 40/40; lint/build passed. RED was observed for both new matrix tests before implementation, then GREEN. Dossiers now have one main landmark. The editable matrix is derived during render, with explicitly hypothetical inputs and a documented normalization formula. Real Edge at 320px verifies the dossier and invalid form in light/dark themes; axe WCAG A/AA results are clean. Fixed dark error contrast (previously 2.44:1). See evidence/browser-followup.json and dossier-320.png.

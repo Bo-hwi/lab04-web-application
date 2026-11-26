@@ -76,7 +76,7 @@ Build a full-stack appeal tribunal for the Himass and TanVuu case study.
 - AI failure analysis: document architecture decisions and observed AI failures in `AI_FAILURE_AUDIT.md`.
 
 ## Task Status
-- [ ] HW2-T1: Build player dossier routes for Himass and TanVuu.
+- [x] HW2-T1: Build player dossier routes for Himass and TanVuu.
 - [x] HW2-T2: Build the context-driven appeal form with synchronous validation.
 - [x] HW2-T3: Implement and verify the zero-drift SLA countdown hook.
 - [ ] HW2-T4: Complete the post-mortem audit and final verification.
@@ -108,9 +108,16 @@ Status: DONE
 - [x] Test countdown updates and visibility resynchronization.
 
 ### HW2-T4: Audit and Delivery
-Status: TODO
+Status: IN PROGRESS
 
-- [ ] Record observed AI failures and fixes in `AI_FAILURE_AUDIT.md`.
-- [ ] Run tests, lint, and production build.
-- [ ] Record browser verification in `VERIFICATION.md`.
+- [x] Record observed AI failures and fixes in `AI_FAILURE_AUDIT.md`.
+- [x] Run tests, lint, and production build.
+- [x] Record the scope of browser verification in `VERIFICATION.md`.
 - [ ] Commit each completed task separately and push the branch.
+## Review corrections - 2026-11-26
+
+HW2-T1 now has dedicated /dossier/unknown and inherited-property ID regression tests, independent of the old /people/999 test. Confirmations store a submission snapshot; invalid resubmission clears it. Form state resets on player changes. The SLA hook is displayed on valid dossiers with an explicit demo deadline of 2026-12-01T00:00:00Z (not a production SLA policy).
+
+## Derived comparison contract (review follow-up)
+
+Replace nested main landmarks with sections. Add an editable, explicitly hypothetical comparison matrix. Normalize each penalty as penaltyDays / severityPoints; matrix[i][j] is normalized[i] / normalized[j]. Non-finite, negative or zero-denominator inputs yield an unavailable cell. These numbers do not describe actual Himass/TanVuu case findings; the deck gives no factual data or prescribed formula. Derive the matrix directly during render.
