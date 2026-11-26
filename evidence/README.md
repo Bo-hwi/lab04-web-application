@@ -20,14 +20,33 @@ These are measured results for this local setup, not a promise that every machin
 
 Local JPEG originals were downloaded from Lorem Picsum: https://picsum.photos/id/1018/600/400 (mountain), https://picsum.photos/id/1076/600/400 (building), https://picsum.photos/id/15/600/400 (waterfall). WebP derivatives are 300x200 and 600x400. Photos retain their original IDs in this source record. The building replacement was visually inspected; source 1011 showed a canoe and was removed.
 
-## Reproduce
+## Reproduce from this branch
 
-Run npm.cmd run build and npm.cmd run preview from client/. Install Lighthouse separately and audit /gallery with default mobile settings and performance/accessibility categories. The saved JSON includes the exact Lighthouse config, browser version, audit time and trace-derived metrics.
+From the checkout root, install/build the client, then leave production preview running:
 
-## Reproduction scripts
+```powershell
+npm.cmd --prefix client ci
+npm.cmd --prefix client run build
+npm.cmd --prefix client run preview -- --host 127.0.0.1 --port 4174 --strictPort
+```
 
-From the main repository root, install npm.cmd install --prefix .repairs/tooling --no-audit --no-fund lighthouse@13.6.0 playwright-core. With both preview servers running, node evidence/check-gallery.mjs records viewport checks. Run node evidence/run-lighthouse.mjs hw3 http://127.0.0.1:4173/gallery mobile (or desktop); use hw1 and port 4174 for the other build. The scripts use the installed Microsoft Edge executable.
+In another terminal at the same checkout root, run the standalone Lighthouse CLI. Set CHROME_PATH to your installed Chromium browser; this example uses Microsoft Edge on Windows:
 
+```powershell
+$env:CHROME_PATH = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+npx.cmd --yes lighthouse@13.6.0 http://127.0.0.1:4174/gallery --chrome-flags="--headless=new" --only-categories=performance,accessibility --output=html --output=json --output-path=./lighthouse-mobile
+```
+
+Example for Windows with Microsoft Edge (adjust CHROME_PATH for another browser installation):
+
+```powershell
+$env:CHROME_PATH = 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+npx.cmd --yes lighthouse@13.6.0 http://127.0.0.1:4174/gallery --only-categories=performance,accessibility --output=html --output=json --output-path=./lighthouse-hw1-mobile --chrome-flags="--headless=new"
+```
+
+The default CLI device is mobile; add --preset=desktop and use a different output path for a desktop report. Scores vary between runs. Saved JSON reports include their exact device settings, browser version, audit time and measured metrics.
+
+Other branch evidence: [HW1](https://github.com/Bo-hwi/lab04-web-application/tree/hw1-photo-gallery/evidence), [HW3](https://github.com/Bo-hwi/lab04-web-application/tree/hw3-photo-dialog/evidence). These standalone commands do not depend on the original local worktree layout.
 ## Follow-up
 
-For HW1, the current split-bundle production reports are lighthouse-hw1-mobile-rerun.report.json and lighthouse-hw1-desktop-rerun.report.json (both Performance/Accessibility 100/100); older attempts describe older bundles or earlier runs. Current accessibility/keyboard/reflow observations are recorded in browser-followup.json for HW1 and followup-browser.json for the main gallery. The tagged axe checks do not replace native screen-reader speech testing. Vite/Rolldown configuration reference: https://vite.dev/config/build-options and https://rolldown.rs/reference/OutputOptions.codeSplitting.
+For [HW1](https://github.com/Bo-hwi/lab04-web-application/tree/hw1-photo-gallery/evidence), the current split-bundle production reports are lighthouse-hw1-mobile-rerun.report.json and lighthouse-hw1-desktop-rerun.report.json (both Performance/Accessibility 100/100); older attempts describe older bundles or earlier runs. Current accessibility/keyboard/reflow observations are recorded in browser-followup.json for HW1 and followup-browser.json for the main gallery. The tagged axe checks do not replace native screen-reader speech testing. Vite/Rolldown configuration reference: https://vite.dev/config/build-options and https://rolldown.rs/reference/OutputOptions.codeSplitting.

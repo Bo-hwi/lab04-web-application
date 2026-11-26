@@ -30,7 +30,7 @@ Build an accessible photo gallery using React.
 - [x] H1-T3: Open and close photo dialog
 - [x] H1-T4: Implement keyboard and accessibility behavior
 - [ ] H1-T5: Verify responsive design and performance
-- [ ] H1-T6: Complete documentation and push
+- [x] H1-T6: Publish the implementation and its verification documents
 
 ## Acceptance Criteria
 
@@ -92,15 +92,15 @@ Status: IN PROGRESS
 
 ### H1-T6: Delivery
 
-Status: IN PROGRESS
+Status: DONE - published implementation checkpoint 2dcca6e
 
 - [x] Finalize TASK_DECOMPOSITION.md.
 - [x] Finalize VERIFICATION.md.
 - [x] Finalize AI_FAILURE_AUDIT.md.
-- [ ] Commit and push changes.
+- [x] Commit and push the implementation checkpoint (2dcca6e).
 ## Naming and repair scope
 
-The supplied review reports inconsistent Homework numbers in the deck. Existing branch names remain the contract: HW1 = photo gallery, HW2 = appeal tribunal, HW3 = URL-synchronized photo dialog. Card-swipe/Mongoose is implemented separately in the hw4-card-swipe working tree (.repairs/hw4); its files are not merged into this gallery branch. This is not a claim that the entire Lab 4 is complete.
+The supplied review reports inconsistent Homework numbers in the deck. Existing branch names remain the contract: HW1 = photo gallery, HW2 = appeal tribunal, HW3 = URL-synchronized photo dialog. Card-swipe/Mongoose is published separately on [hw4-card-swipe](https://github.com/Bo-hwi/lab04-web-application/tree/hw4-card-swipe); its files are not merged into this gallery branch. This is not a claim that the entire Lab 4 is complete.
 
 ## Review corrections (2026-11-26)
 
@@ -108,8 +108,8 @@ The supplied review reports inconsistent Homework numbers in the deck. Existing 
 - Architecture image now shows a building; Forest Waterfall title/alt match the waterfall.
 - Photos are stored locally; source IDs are recorded in evidence/README.md.
 - Root redirect and unknown-path recovery are covered by tests.
-- Delivery remains in progress until any required push and manual accessibility audit are completed.
+- Implementation publication is complete at the checkpoint above. Native screen-reader speech review remains open under H1-T5.
 
 ## Follow-up evidence status
 
-All implemented feature tests, lint and build checks pass. The latest saved mobile and desktop Lighthouse runs score 100/100. Keyboard, root-text sizing, reflow and tagged axe checks are recorded in verification. Delivery stays in progress for local commit/push and native screen-reader speech review; no blanket full-lab certification is claimed.
+All implemented feature tests, lint and build checks pass. The latest saved mobile and desktop Lighthouse runs score 100/100. Keyboard, root-text sizing, reflow and tagged axe checks are recorded in verification. The implementation checkpoint is published. Native screen-reader speech review remains open under H1-T5; no blanket full-lab certification is claimed.
