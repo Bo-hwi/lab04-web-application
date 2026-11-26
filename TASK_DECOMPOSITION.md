@@ -87,3 +87,6 @@ Ex 1.1 is a refactor: T1–T7 must remain green and `npm run build` must split `
 ## 8. Deviations from plan
 - `main` still declared `react-router@^8` (AI_FAILURE_AUDIT B-04); corrected to v7 on `ex1`. `ex2`, `ex3` branched from `ex1` and therefore inherit v7.
 - Commit `738497b` accidentally combined the docs file with the router version change (VERIFICATION §4). History was not changed because it had already been pushed.
+## Review repair contract - 2026-11-26
+
+Announce skeleton loading politely; do not assert zero CLS without browser measurements.

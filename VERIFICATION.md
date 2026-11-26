@@ -29,3 +29,10 @@ Independent verification: cloned commit `d03287c` from GitHub and reran `npm tes
 - Accidentally pasted `App.jsx` code into `App.test.jsx` → `npm test` reported `No test suite found` → restored with `git restore src/App.test.jsx`.
 - Commit `738497b` accidentally combined `TASK_DECOMPOSITION.md` with a router version change (violating an atomic commit). History was not changed because it had already been pushed; mitigation: run `git status` before each commit.
 - Commit `10d8f59` was created before running `npm test` (the command was run in the repository root by mistake); it was rerun immediately afterward before implementation code existed → the red result in row 3 of the §1 table remains valid.
+## Earlier review repairs - 2026-11-26 (history)
+
+Client: 7/7 tests, lint and production build passed. Skeleton now declares aria-live="polite". Removed the unmeasured CLS = 0 assertion; no new CLS measurement or manual ex1 browser check is claimed.
+
+## Follow-up verification - 2026-11-26
+
+Latest client suite: 7/7; lint/build passed. A real Edge lazy navigation with the detail chunk delayed 400ms originally recorded a 0.014679862429997564 layout-shift entry with hadRecentInput=true. Giving the app shell width:100% and border-box sizing removed that visual movement. Repeated observer verification recorded no shift entries after two animation frames. This is a measured route-specific result, not a guarantee for every viewport/content combination. See evidence/browser-followup.json.

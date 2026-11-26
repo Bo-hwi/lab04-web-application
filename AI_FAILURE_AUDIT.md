@@ -24,3 +24,12 @@
 | B-05 | Proposed 6 branches by exercise number 1.1, 1.2... | Student objected: the slides grade by Sprint | Reorganized into 3 branches ex1/ex2/ex3 |
 | B-06 | Claimed "slide 22 is wrong because `Outlet` cannot pass `people`" | AI rechecked: passing via `element={<PersonDetail people={people} />}` works | Retracted the claim; not counted as a slide defect |
 | B-07 | Wrote tests T4–T7 before `people.js` existed | Tests were red due to `Failed to resolve import` — the wrong reason for red | Put `people.js` in the same test commit |
+## Review repairs - 2026-11-26
+
+Client: 7/7 tests, lint and production build passed. Skeleton now declares aria-live="polite". Removed the unmeasured CLS = 0 assertion; no new CLS measurement or manual ex1 browser check is claimed.
+
+Prevention: cover concrete edge cases and distinguish test evidence from browser observations; do not infer performance or full-lab completion from source code.
+
+## Follow-up fixes - 2026-11-26
+
+Latest client suite: 7/7; lint/build passed. A real Edge lazy navigation with the detail chunk delayed 400ms originally recorded a 0.014679862429997564 layout-shift entry with hadRecentInput=true. Giving the app shell width:100% and border-box sizing removed that visual movement. Repeated observer verification recorded no shift entries after two animation frames. This is a measured route-specific result, not a guarantee for every viewport/content combination. See evidence/browser-followup.json.
